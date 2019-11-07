@@ -1,0 +1,47 @@
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+	#containerPhotoPreview {
+    width: 250px;
+    height: 250px;
+  }
+  #photoPreview {
+    max-width: 250px;
+    max-height: 250px;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+	#containerPhotoPreview {
+    width: 300px;
+    height: 300px;
+  }
+  #photoPreview {
+    max-width: 300px;
+    max-height: 300px;
+  }
+}
+
+/* tablets/desktops and up ----------- */
+@media (min-width: 992px) and (max-width: 1199px) {
+	#containerPhotoPreview {
+    width: 350px;
+    height: 350px;
+  }
+  #photoPreview {
+    max-width: 350px;
+    max-height: 350px;
+  }
+}
+
+/* large desktops and up ----------- */
+@media screen and (min-width: 1200px) {
+	#containerPhotoPreview {
+    width: 400px;
+    height: 400px;
+  }
+  #photoPreview {
+    max-width: 400px;
+    max-height: 400px;
+  }
+}
