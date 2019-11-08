@@ -1,21 +1,28 @@
-<div class="row my-5">
+<div class="row mt-5">
 
 	<div class="col-md-6">
-		<app-photo></app-photo>
 
-		<br>
+    <app-photo
+      [src]="photoSrc"
+    ></app-photo>
 
-		<div class="d-flex">
-			<input
-        #imageInput
-        class="mx-auto"
-				type="file"
-				accept="image/*"
-				name="foto"
-				id="input_profile_foto"
-				(change)="processFile(imageInput)"
-			>
-		</div>
+    <br>
+
+    <form [formGroup]="imageForm">
+      <mat-form-field class="w-100 px-5">
+        <ngx-mat-file-input
+          #imageInput
+          (change)="processFile($event)"
+          [accept]="'image/*'"
+          formControlName="imageFile"
+          placeholder="Escolha uma imagem"
+        ></ngx-mat-file-input>
+        <button mat-icon-button matSuffix *ngIf="!imageInput.empty" (click)="clearImage($event)">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+
 	</div>
 
 	<div class="col-md-6">

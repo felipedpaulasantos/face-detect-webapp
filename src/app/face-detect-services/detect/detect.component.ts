@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   templateUrl: './detect.component.html',
@@ -6,31 +7,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetectComponent implements OnInit {
 
-  // selectedFile: ImageSnippet;
+  @ViewChild('imageInput', null) imageInput;
+  selectedFile = '';
+  photoSrc = '';
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder
+  ) {}
 
-  ngOnInit() {
-  }
+  imageForm = this.fb.group({
+    imageFile: [null]
+  });
+
+  ngOnInit() {}
 
   processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
+
+    // const file: File = imageInput.files[0];
+    const file: File = this.imageForm.get('imageFile').value._files[0];
     const reader = new FileReader();
 
-/*     reader.addEventListener('load', (event: any) => {
+    reader.addEventListener('load', (event: any) => {
+      this.photoSrc = event.target.result;
 
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-
-      this.imageService.uploadImage(this.selectedFile.file).subscribe(
+/*       this.imageService.uploadImage(this.selectedFile.file).subscribe(
         (res) => {
 
         },
         (err) => {
 
-        })
+        }); */
     });
+    reader.readAsDataURL(file);
 
-    reader.readAsDataURL(file); */
+    console.log(this.selectedFile);
+  }
+
+  clearImage(event: any) {
+
+    this.imageInput.clear(event);
+    this.photoSrc = '';
   }
 
 }
