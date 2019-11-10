@@ -1,6 +1,9 @@
-<div id="containerPhotoPreview" class="card bg-white shadow mx-auto d-flex align-items-center">
+<mat-card id="containerPhotoPreview" class="mx-auto d-flex align-items-center">
   <img
+    #imagePreview
     id="photoPreview"
-		class="img-fluid mx-auto"
-		[src]="src">
-</div>
+    class="img-fluid mx-auto"
+    [src]="src"
+    (load)="onLoad()"
+  >
+</mat-card>

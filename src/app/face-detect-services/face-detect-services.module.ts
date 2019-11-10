@@ -10,6 +10,7 @@ import { DetectionAttributesComponent } from './detection-attributes/detection-a
 import { HttpClientModule } from '@angular/common/http';
 import { SharedComponentsModule } from '../shared/components/shared-components.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxFilesizeModule } from 'ngx-filesize';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MaterialFileInputModule,
     HttpClientModule,
     NgxSpinnerModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    NgxFilesizeModule
   ]
 })
 export class FaceDetectServicesModule {}

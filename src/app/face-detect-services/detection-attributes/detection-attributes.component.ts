@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, AfterViewInit, HostListener, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, HostListener } from '@angular/core';
 import { DetectionAttributes } from './detection-attributes';
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { MatTreeNestedDataSource } from '@angular/material';
+import { MatTreeNestedDataSource, MatTabChangeEvent } from '@angular/material';
 import { Observable } from 'rxjs';
 
 declare var require: any;
@@ -29,6 +29,7 @@ enum AttributeType {
 export class DetectionAttributesComponent implements OnInit, OnChanges {
 
   @Input() detectionAttributes$: Observable<DetectionAttributes[]> = null;
+  @Input() photoDimensions: PhotoDimensions;
   detectionAttributesArray: DetectionAttributes[] = [];
   detectionAttributes: DetectionAttributes = null;
   @ViewChild('tree', { static: false }) tree;
@@ -78,6 +79,13 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
           this.detectionAttributesArray = [];
         }
       });
+  }
+
+  drawFaceRectangle(tabChangeEvent: MatTabChangeEvent) {
+
+    if (tabChangeEvent.tab.textLabel === 'Localização') {
+      // TO DO
+    }
   }
 
   hasChild = (_: number, node: AttributesNode) => !!node.children && node.children.length > 0;

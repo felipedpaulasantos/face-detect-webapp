@@ -1,5 +1,7 @@
 <mat-card [style.height.px]="innerHeight" class="overflow-auto">
 
+  {{ photoDimensions | json }}
+
   <mat-form-field *ngIf="detectionAttributesArray && detectionAttributesArray.length > 1">
     <mat-label>Faces detectadas</mat-label>
     <mat-select (selectionChange)="updateDetectionAttributes($event)">
@@ -8,7 +10,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-tab-group *ngIf="detectionAttributes else noAttributes" #tabGroup mat-stretch-tabs>
+  <mat-tab-group *ngIf="detectionAttributes else noAttributes" #tabGroup (selectedTabChange)="drawFaceRectangle($event)" mat-stretch-tabs>
 
     <mat-tab label="Atributos">
 
