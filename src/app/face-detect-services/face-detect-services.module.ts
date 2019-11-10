@@ -7,6 +7,9 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { PhotosModule } from '../photos/photos.module';
 import { MaterialModule } from '../material/material.module';
 import { DetectionAttributesComponent } from './detection-attributes/detection-attributes.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedComponentsModule } from '../shared/components/shared-components.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { DetectionAttributesComponent } from './detection-attributes/detection-a
     PhotosModule,
     ReactiveFormsModule,
     MaterialModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    HttpClientModule,
+    NgxSpinnerModule,
+    SharedComponentsModule
   ]
 })
 export class FaceDetectServicesModule {}

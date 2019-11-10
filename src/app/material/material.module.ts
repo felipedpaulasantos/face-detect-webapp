@@ -8,6 +8,8 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { MatTreeModule } from '@angular/material/tree';
     MatRippleModule,
     MatTabsModule,
     MatCardModule,
-    MatTreeModule
+    MatTreeModule,
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatFormFieldModule,
@@ -31,7 +35,9 @@ import { MatTreeModule } from '@angular/material/tree';
     MatRippleModule,
     MatTabsModule,
     MatCardModule,
-    MatTreeModule
+    MatTreeModule,
+    MatSelectModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule {}

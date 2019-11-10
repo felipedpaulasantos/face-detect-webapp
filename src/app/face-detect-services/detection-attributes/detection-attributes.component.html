@@ -1,10 +1,25 @@
 <mat-card [style.height.px]="innerHeight" class="overflow-auto">
 
-  <mat-tab-group #tabGroup mat-stretch-tabs>
+  <mat-form-field *ngIf="detectionAttributesArray && detectionAttributesArray.length > 1">
+    <mat-label>Faces detectadas</mat-label>
+    <mat-select (selectionChange)="updateDetectionAttributes($event)">
+      <mat-option *ngFor="let attr of detectionAttributesArray" [value]="detectionAttributesArray.indexOf(attr)">
+        {{attr.faceId}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-tab-group *ngIf="detectionAttributes else noAttributes" #tabGroup mat-stretch-tabs>
 
     <mat-tab label="Atributos">
 
-      <button style="right: 0;" mat-icon-button (click)="toggleTreeExpanded()">
+      <ul>
+        <li>
+          <span class="font-weight-bold mr-2">ID: </span>
+          {{ detectionAttributes.faceId }}
+        </li>
+      </ul>
+
+      <button mat-icon-button (click)="toggleTreeExpanded()">
         <mat-icon class="mat-icon-rtl-mirror">
           {{isTreeExpanded ? 'expand_more' : 'chevron_right'}}
         </mat-icon>
@@ -24,31 +39,40 @@
               <ng-container *ngIf="node.type && node.type == 'number'">
                 {{node.value | number}}
               </ng-container>
+
               <ng-container *ngIf="node.type && node.type == 'date'">
                 {{node.value | date}}
               </ng-container>
+
               <ng-container *ngIf="node.type && node.type == 'percent'">
                 {{node.value | percent}}
               </ng-container>
+
               <ng-container *ngIf="node.value == 'male'">
                 <i class="fas fa-2x fa-mars text-primary"></i>
               </ng-container>
+
               <ng-container *ngIf="node.value == 'female'">
                 <i class="fas fa-2x fa-venus text-danger"></i>
               </ng-container>
+
               <ng-container *ngIf="node.type == 'boolean' && node.value == 'true'">
                 <mat-icon class="text-success">check</mat-icon>
               </ng-container>
+
               <ng-container *ngIf="node.type == 'boolean' && node.value == 'false'">
                 <mat-icon class="text-danger">close</mat-icon>
               </ng-container>
+
               <ng-container *ngIf="node.type == 'color'">
                 <mat-icon [ngStyle]="{'color': node.name == 'blond' ? '#faf0be' : node.name}" class="mr-2">lens</mat-icon>
                 {{ node.value | percent }}
               </ng-container>
+
               <ng-container *ngIf="!node.type">
                 {{node.value}}
               </ng-container>
+
             </ng-container>
 
             <ng-template #noValue>
@@ -82,8 +106,8 @@
     </mat-tab>
 
 
-    <mat-tab *ngIf="detectionAttributes[0].faceRectangle" label="Localização">
-      <ul class="list-unstyled" *ngFor="let item of detectionAttributes[0].faceRectangle | keyvalue:keepOriginalOrder">
+    <mat-tab *ngIf="detectionAttributes && detectionAttributes.faceRectangle" label="Localização">
+      <ul class="list-unstyled" *ngFor="let item of detectionAttributes.faceRectangle | keyvalue:keepOriginalOrder">
         <li>
           <span class="font-weight-bold mr-2">{{ item.key }}: </span>
           {{ item.value | number }}
@@ -92,8 +116,8 @@
     </mat-tab>
 
 
-    <mat-tab *ngIf="detectionAttributes[0].faceLandmarks" label="Pontos de referência">
-      <ul class="list-unstyled" *ngFor="let item of detectionAttributes[0].faceLandmarks | keyvalue:keepOriginalOrder">
+    <mat-tab *ngIf="detectionAttributes && detectionAttributes.faceLandmarks" label="Pontos de referência">
+      <ul class="list-unstyled" *ngFor="let item of detectionAttributes.faceLandmarks | keyvalue:keepOriginalOrder">
         <li>
           <span>{{ item.key }}: </span>
           <span *ngFor="let item of item.value | keyvalue">
@@ -107,4 +131,10 @@
 
 
   </mat-tab-group>
+  <ng-template #noAttributes>
+    <div class="h-100 d-flex align-items-center justify-content-center">
+      <h1 class="text-muted">Consulte uma imagem para verificar seus atributos.</h1>
+    </div>
+  </ng-template>
+
 </mat-card>

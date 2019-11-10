@@ -36,4 +36,6 @@ $face-detect-webapp-theme: mat-light-theme($face-detect-webapp-primary, $face-de
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ul { list-style: none };
 .mat-tab-body { margin-top: 1rem; }
+mat-form-field { width: 100% !important; }

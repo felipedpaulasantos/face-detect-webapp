@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, AfterViewInit, HostListener, ViewEncapsulation } from '@angular/core';
 import { DetectionAttributes } from './detection-attributes';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material';
+import { Observable } from 'rxjs';
 
 declare var require: any;
 
@@ -27,7 +28,9 @@ enum AttributeType {
 })
 export class DetectionAttributesComponent implements OnInit, OnChanges {
 
-  @Input() detectionAttributes: DetectionAttributes;
+  @Input() detectionAttributes$: Observable<DetectionAttributes[]> = null;
+  detectionAttributesArray: DetectionAttributes[] = [];
+  detectionAttributes: DetectionAttributes = null;
   @ViewChild('tree', { static: false }) tree;
   @ViewChild('tabGroup', { static: false }) tabGroup;
   innerHeight: number;
@@ -36,10 +39,7 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
   treeControl = new NestedTreeControl<AttributesNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<AttributesNode>();
 
-  constructor() {
-    this.detectionAttributes = require('../../../assets/samples/detection-attributes-sample.json');
-    this.buildTreeData(this.detectionAttributes[0]);
-  }
+  constructor() {}
 
   keepOriginalOrder = (a: any, b: any) => a.key;
 
@@ -53,9 +53,7 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-     if (this.detectionAttributes) {
-      this.buildTreeData(this.detectionAttributes);
-    }
+    this.updateDetectionAttributes();
   }
 
   setTabGroupMaxHeight() {
@@ -67,9 +65,26 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
     this.isTreeExpanded = !this.isTreeExpanded;
   }
 
+  updateDetectionAttributes(event?: any) {
+    this.detectionAttributes$
+      .subscribe(attr => {
+        if (attr) {
+          this.detectionAttributesArray = attr;
+          this.detectionAttributes = event ? attr[event.value] : attr[0];
+          this.isTreeExpanded = false;
+          this.buildTreeData(this.detectionAttributes);
+        } else {
+          this.detectionAttributes = null;
+          this.detectionAttributesArray = [];
+        }
+      });
+  }
+
   hasChild = (_: number, node: AttributesNode) => !!node.children && node.children.length > 0;
 
   buildTreeData(attr: DetectionAttributes) {
+
+    if (!attr) { return; }
 
     let facialHair: AttributesNode = null;
     let headPose: AttributesNode = null;

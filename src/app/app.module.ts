@@ -1,12 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PhotosModule } from './photos/photos.module';
 import { FaceDetectServicesModule } from './face-detect-services/face-detect-services.module';
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } from '@angular/material';
+import { MaterialModule } from './material/material.module';
+import { SharedComponentsModule } from './shared/components/shared-components.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from './shared/interceptors/loader-interceptor';
 
 @NgModule({
   declarations: [
@@ -16,11 +22,23 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } 
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MaterialModule,
     PhotosModule,
-    FaceDetectServicesModule
+    FaceDetectServicesModule,
+    SharedComponentsModule
   ],
   exports: [],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
