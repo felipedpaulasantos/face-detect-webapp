@@ -6,10 +6,12 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 import { PhotosModule } from '../photos/photos.module';
 import { MaterialModule } from '../material/material.module';
+import { DetectionAttributesComponent } from './detection-attributes/detection-attributes.component';
 
 @NgModule({
   declarations: [
-    DetectComponent
+    DetectComponent,
+    DetectionAttributesComponent
   ],
   imports: [
     CommonModule,

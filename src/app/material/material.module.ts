@@ -5,6 +5,10 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatTreeModule } from '@angular/material/tree';
+
 
 @NgModule({
   imports: [
@@ -13,7 +17,10 @@ import { MatRippleModule } from '@angular/material/core';
     MaterialFileInputModule,
     MatIconModule,
     MatButtonModule,
-    MatRippleModule
+    MatRippleModule,
+    MatTabsModule,
+    MatCardModule,
+    MatTreeModule
   ],
   exports: [
     MatFormFieldModule,
@@ -21,7 +28,10 @@ import { MatRippleModule } from '@angular/material/core';
     MaterialFileInputModule,
     MatIconModule,
     MatButtonModule,
-    MatRippleModule
+    MatRippleModule,
+    MatTabsModule,
+    MatCardModule,
+    MatTreeModule
   ]
 })
 export class MaterialModule {}
