@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { FaceDetectService } from '../face-detect.service';
 import { BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { FaceDetectService } from '../face-detect.service';
 import { DetectionAttributes } from '../detection-attributes/detection-attributes';
 import { PhotoComponent } from 'src/app/photos/photo/photo.component';
+import { CustomSnackBarService } from 'src/app/shared/components/custom-snack-bar/custom-snack-bar.service';
 
 @Component({
   templateUrl: './detect.component.html',
@@ -24,7 +27,8 @@ export class DetectComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private detectService: FaceDetectService
+    private detectService: FaceDetectService,
+    private snackBar: CustomSnackBarService
   ) {}
 
   imageForm = this.fb.group({
@@ -36,9 +40,13 @@ export class DetectComponent implements OnInit {
   processFile(imageInput: any) {
 
     this.file = this.imageForm.get('imageFile').value._files[0];
-    const reader = new FileReader();
+    if (!this.file) {
+      this.snackBar.openSnackBar('Arquivo inválido!', '', 'Error');
+    }
 
+    const reader = new FileReader();
     reader.addEventListener('load', (event: any) => {
+
       this.photoSrc = event.target.result;
 
       const formData = new FormData();
@@ -46,11 +54,10 @@ export class DetectComponent implements OnInit {
 
       this.detectService.detect(formData).subscribe(
         (res: DetectionAttributes[]) => {
-          console.log(res);
           this.detectionAttributesSource.next(res);
         },
         (err) => {
-          console.log(err);
+          this.snackBar.openSnackBar('Houve um erro ao consultar a API!', '', 'Error');
         });
     });
     reader.readAsDataURL(this.file);

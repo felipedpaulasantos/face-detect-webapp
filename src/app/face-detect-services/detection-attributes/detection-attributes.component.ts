@@ -3,6 +3,7 @@ import { DetectionAttributes } from './detection-attributes';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource, MatTabChangeEvent } from '@angular/material';
 import { Observable } from 'rxjs';
+import { CustomSnackBarService } from 'src/app/shared/components/custom-snack-bar/custom-snack-bar.service';
 
 declare var require: any;
 
@@ -40,7 +41,9 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
   treeControl = new NestedTreeControl<AttributesNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<AttributesNode>();
 
-  constructor() {}
+  constructor(
+    private snackBar: CustomSnackBarService
+  ) {}
 
   keepOriginalOrder = (a: any, b: any) => a.key;
 
@@ -70,6 +73,7 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
     this.detectionAttributes$
       .subscribe(attr => {
         if (attr) {
+          this.snackBar.openSnackBar('Atributos atualizados', '', 'Success');
           this.detectionAttributesArray = attr;
           this.detectionAttributes = event ? attr[event.value] : attr[0];
           this.isTreeExpanded = false;
@@ -85,6 +89,8 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
 
     if (tabChangeEvent.tab.textLabel === 'Localização') {
       // TO DO
+      // Desenhar um retângulo no(s) rosto(s) da imagem,
+      // conforme coordenadas do objeto detectionAttributes[i].faceLandmarks, caso exista
     }
   }
 

@@ -26,16 +26,24 @@
     <div class="pl-2" *ngIf="photoData && file">
       <ul class="padded-list">
         <li>
-          <span class="font-weight-bold mr-2">Largura original: </span>{{ photoData.naturalWidth | number}}px
+          <span class="font-weight-bold mr-2">
+            Largura (original/atual): </span>
+            {{ photoData.naturalWidth | number}}px / {{ photoData.width | number}}px
         </li>
         <li>
-          <span class="font-weight-bold mr-2">Altura original: </span>{{ photoData.naturalHeight | number }}px
+          <span class="font-weight-bold mr-2">
+            Altura (original/atual): </span>
+            {{ photoData.naturalHeight | number }}px / {{ photoData.height | number }}px
         </li>
         <li>
-          <span class="font-weight-bold mr-2">Tamanho: </span>{{ file.size | filesize }}
+          <span class="font-weight-bold mr-2">
+            Tamanho: </span>
+            {{ file.size | filesize }}
         </li>
         <li>
-          <span class="font-weight-bold mr-2">Última modificação: </span>{{ file.lastModified | date }}
+          <span class="font-weight-bold mr-2">
+            Última modificação: </span>
+            {{ file.lastModified | date }}
         </li>
       </ul>
     </div>

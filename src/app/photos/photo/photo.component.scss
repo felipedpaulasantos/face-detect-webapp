@@ -1,12 +1,12 @@
 /* Extra small devices (phones, up to 480px) */
 @media screen and (max-width: 767px) {
 	#containerPhotoPreview {
-    width: 250px;
-    height: 250px;
+    width: 270px;
+    height: 270px;
   }
   #photoPreview {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 240px;
+    max-height: 240px;
   }
 }
 
@@ -17,20 +17,20 @@
     height: 300px;
   }
   #photoPreview {
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 270px;
+    max-height: 270px;
   }
 }
 
 /* tablets/desktops and up ----------- */
 @media (min-width: 992px) and (max-width: 1199px) {
 	#containerPhotoPreview {
-    width: 350px;
-    height: 350px;
+    width: 370px;
+    height: 370px;
   }
   #photoPreview {
-    max-width: 350px;
-    max-height: 350px;
+    max-width: 340px;
+    max-height: 340px;
   }
 }
 
@@ -41,7 +41,7 @@
     height: 400px;
   }
   #photoPreview {
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 370px;
+    max-height: 370px;
   }
 }
