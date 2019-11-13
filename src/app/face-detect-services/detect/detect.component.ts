@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { FaceDetectService } from '../face-detect.service';
-import { DetectionAttributes } from '../detection-attributes/detection-attributes';
+import { DetectionAttributes } from './detection-attributes/detection-attributes';
 import { PhotoComponent } from 'src/app/photos/photo/photo.component';
 import { CustomSnackBarService } from 'src/app/shared/components/custom-snack-bar/custom-snack-bar.service';
+import { PhotoService } from 'src/app/photos/photo.service';
 
 @Component({
   templateUrl: './detect.component.html',
@@ -14,28 +15,30 @@ import { CustomSnackBarService } from 'src/app/shared/components/custom-snack-ba
 })
 export class DetectComponent implements OnInit {
 
-  @Input() photoData: HTMLImageElement;
+  photoData$ = new Observable<HTMLImageElement>(null);
   @ViewChild('imageInput', null) imageInput;
   @ViewChild(PhotoComponent, { static: false }) photoComponent: PhotoComponent;
 
   private detectionAttributesSource = new BehaviorSubject<DetectionAttributes[]>(null);
   attributes$ = this.detectionAttributesSource.asObservable();
 
-  selectedFile = '';
   photoSrc = '';
   file: File;
 
   constructor(
     private fb: FormBuilder,
     private detectService: FaceDetectService,
-    private snackBar: CustomSnackBarService
+    private snackBar: CustomSnackBarService,
+    private photoService: PhotoService
   ) {}
 
   imageForm = this.fb.group({
     imageFile: [null]
   });
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.photoData$ = this.photoService.imageElement$;
+  }
 
   processFile(imageInput: any) {
 
@@ -48,12 +51,17 @@ export class DetectComponent implements OnInit {
     reader.addEventListener('load', (event: any) => {
 
       this.photoSrc = event.target.result;
+      this.photoService.photoSrc$.next(this.photoSrc);
 
       const formData = new FormData();
       formData.append('imageFile', this.file);
 
       this.detectService.detect(formData).subscribe(
         (res: DetectionAttributes[]) => {
+          if (Number(res.length) === 0) {
+            this.snackBar.openSnackBar('Nenhuma face detectada.', '', 'Warn');
+            return;
+          }
           this.detectionAttributesSource.next(res);
         },
         (err) => {
@@ -63,17 +71,12 @@ export class DetectComponent implements OnInit {
     reader.readAsDataURL(this.file);
   }
 
-  receivePhotoData(photoData: HTMLImageElement) {
-    this.photoData = photoData;
-  }
-
   clearImage(event: any) {
 
-    this.imageInput.clear(event);
-    this.photoSrc = '';
+    this.photoService.photoSrc$.next('');
+    this.photoService.imageElement$.next(null);
     this.detectionAttributesSource.next(null);
     this.file = null;
-    this.photoData = null;
   }
 
 }

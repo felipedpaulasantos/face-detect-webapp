@@ -11,6 +11,16 @@ export class FaceDetectService {
   ) { }
 
   detect(formData: FormData) {
-    return this.http.post('/facedetect/v1/detectar?retornaId=true&retornaPontosReferencia=true&retornaModeloReconhecimento=true', formData);
+    return this.http.post(
+      '/facedetect/v1/detectar',
+      formData,
+      {
+        params: {
+          retornaId: 'true',
+          retornaPontosReferencia: 'true',
+          retornaModeloReconhecimento: 'false'
+        }
+      }
+    );
   }
 }

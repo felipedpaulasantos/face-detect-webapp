@@ -11,6 +11,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 @NgModule({
   imports: [
@@ -25,7 +27,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatTreeModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatFormFieldModule,
@@ -39,7 +42,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatTreeModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSlideToggleModule
   ]
 })
 export class MaterialModule {}

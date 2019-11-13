@@ -17,7 +17,7 @@ export class CustomSnackBarService {
       snackTypeParam !== undefined ? snackTypeParam : 'Info';
 
     let panelClass = '';
-    switch(snackTypeParam) {
+    switch (snackTypeParam) {
       case 'Success':
         panelClass = 'bg-success';
         break;

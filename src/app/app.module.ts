@@ -9,7 +9,7 @@ registerLocaleData(localePt);
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PhotosModule } from './photos/photos.module';
 import { FaceDetectServicesModule } from './face-detect-services/face-detect-services.module';
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './shared/material/material.module';
 import { SharedComponentsModule } from './shared/components/shared-components.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './shared/interceptors/loader-interceptor';

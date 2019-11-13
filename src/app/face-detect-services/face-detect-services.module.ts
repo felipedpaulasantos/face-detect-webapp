@@ -5,17 +5,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 import { PhotosModule } from '../photos/photos.module';
-import { MaterialModule } from '../material/material.module';
-import { DetectionAttributesComponent } from './detection-attributes/detection-attributes.component';
+import { MaterialModule } from '../shared/material/material.module';
+import { DetectionAttributesComponent } from './detect/detection-attributes/detection-attributes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedComponentsModule } from '../shared/components/shared-components.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxFilesizeModule } from 'ngx-filesize';
+import { CompareComponent } from './compare/compare.component';
+import { CompareResultComponent } from './compare/compare-result/compare-result.component';
 
 @NgModule({
   declarations: [
     DetectComponent,
-    DetectionAttributesComponent
+    DetectionAttributesComponent,
+    CompareComponent,
+    CompareResultComponent
   ],
   imports: [
     CommonModule,

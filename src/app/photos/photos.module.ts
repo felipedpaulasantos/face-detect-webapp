@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PhotoComponent } from './photo/photo.component';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../shared/material/material.module';
 
 @NgModule({
   declarations: [

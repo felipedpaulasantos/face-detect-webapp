@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, OnChanges } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { PhotoService } from '../photo.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-photo',
@@ -8,18 +10,22 @@ import { EventEmitter } from '@angular/core';
 })
 export class PhotoComponent implements OnInit {
 
-  @Input() src = '';
+  src = new Observable<string>();
+
   @ViewChild('imagePreview', { static: false }) imagePreview: ElementRef;
-  @Output() photoDataEvent = new EventEmitter<HTMLImageElement>();
   image: HTMLImageElement;
 
-  constructor() { }
+  constructor(
+    private photoService: PhotoService
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.src = this.photoService.photoSrc$;
+   }
 
   onLoad() {
     this.image = this.imagePreview.nativeElement;
-    this.photoDataEvent.emit(this.image);
+    this.photoService.imageElement$.next(this.image);
   }
 
 }

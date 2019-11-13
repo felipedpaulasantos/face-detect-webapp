@@ -1,4 +1,4 @@
-import { FaceAttributes, FaceRectangle, FaceLandmarks } from './detection-attributes/detection-attributes';
+import { FaceAttributes, FaceRectangle, FaceLandmarks } from './detect/detection-attributes/detection-attributes';
 
 export interface DetectedFace {
 

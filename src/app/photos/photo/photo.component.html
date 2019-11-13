@@ -3,7 +3,7 @@
     #imagePreview
     id="photoPreview"
     class="img-fluid mx-auto"
-    [src]="src"
+    [src]="src | async"
     (load)="onLoad()"
   >
 </mat-card>

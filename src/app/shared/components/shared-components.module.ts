@@ -4,7 +4,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { NgxSpinnerDefaultComponent } from './ngx-spinner-default/ngx-spinner-default.component';
 import { CustomSnackBarComponent } from './custom-snack-bar/custom-snack-bar.component';
-import { MaterialModule } from 'src/app/material/material.module';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 
 @NgModule({
   declarations: [
