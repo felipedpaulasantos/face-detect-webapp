@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +7,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class PhotoService {
 
   photoSrc$ = new BehaviorSubject<string>('');
-  imageElement$ = new BehaviorSubject<HTMLImageElement>(null);
-  imageFile$ = new BehaviorSubject<File>(null);
+  photoElement$ = new BehaviorSubject<HTMLImageElement>(null);
+  photoFile$ = new BehaviorSubject<File>(null);
 
   constructor() { }
 

@@ -3,10 +3,10 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PhotosModule } from './photos/photos.module';
 import { FaceDetectServicesModule } from './face-detect-services/face-detect-services.module';
 import { MaterialModule } from './shared/material/material.module';

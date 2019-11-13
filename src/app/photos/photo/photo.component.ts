@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, OnChanges } from '@angular/core';
-import { EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PhotoService } from '../photo.service';
 import { Observable } from 'rxjs';
 
@@ -25,7 +24,7 @@ export class PhotoComponent implements OnInit {
 
   onLoad() {
     this.image = this.imagePreview.nativeElement;
-    this.photoService.imageElement$.next(this.image);
+    this.photoService.photoElement$.next(this.image);
   }
 
 }

@@ -15,20 +15,17 @@ import { PhotoService } from 'src/app/photos/photo.service';
 })
 export class DetectComponent implements OnInit {
 
+  photoSrc$ = new Observable<string>();
   photoData$ = new Observable<HTMLImageElement>(null);
+  photoFile$ = new Observable<File>(null);
   @ViewChild('imageInput', null) imageInput;
   @ViewChild(PhotoComponent, { static: false }) photoComponent: PhotoComponent;
 
   private detectionAttributesSource = new BehaviorSubject<DetectionAttributes[]>(null);
   attributes$ = this.detectionAttributesSource.asObservable();
 
-  photoSrc = '';
-  file: File;
-
   constructor(
     private fb: FormBuilder,
-    private detectService: FaceDetectService,
-    private snackBar: CustomSnackBarService,
     private photoService: PhotoService
   ) {}
 
@@ -37,46 +34,9 @@ export class DetectComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.photoData$ = this.photoService.imageElement$;
-  }
-
-  processFile(imageInput: any) {
-
-    this.file = this.imageForm.get('imageFile').value._files[0];
-    if (!this.file) {
-      this.snackBar.openSnackBar('Arquivo inválido!', '', 'Error');
-    }
-
-    const reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
-
-      this.photoSrc = event.target.result;
-      this.photoService.photoSrc$.next(this.photoSrc);
-
-      const formData = new FormData();
-      formData.append('imageFile', this.file);
-
-      this.detectService.detect(formData).subscribe(
-        (res: DetectionAttributes[]) => {
-          if (Number(res.length) === 0) {
-            this.snackBar.openSnackBar('Nenhuma face detectada.', '', 'Warn');
-            return;
-          }
-          this.detectionAttributesSource.next(res);
-        },
-        (err) => {
-          this.snackBar.openSnackBar('Houve um erro ao consultar a API!', '', 'Error');
-        });
-    });
-    reader.readAsDataURL(this.file);
-  }
-
-  clearImage(event: any) {
-
-    this.photoService.photoSrc$.next('');
-    this.photoService.imageElement$.next(null);
-    this.detectionAttributesSource.next(null);
-    this.file = null;
+    this.photoData$ = this.photoService.photoElement$;
+    this.photoSrc$ = this.photoService.photoSrc$;
+    this.photoFile$ = this.photoService.photoFile$;
   }
 
 }

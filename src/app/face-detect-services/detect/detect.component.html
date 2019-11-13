@@ -6,44 +6,7 @@
 
 		<br>
 
-		<form [formGroup]="imageForm">
-			<mat-form-field class="w-100 px-5">
-				<ngx-mat-file-input
-					#imageInput
-					(change)="processFile($event)"
-					[accept]="'image/png, image/jpeg, image/gif'"
-					formControlName="imageFile"
-					placeholder="Escolha uma imagem"
-				></ngx-mat-file-input>
-				<button mat-icon-button matSuffix *ngIf="!imageInput.empty" (click)="clearImage($event)">
-					<mat-icon>clear</mat-icon>
-				</button>
-			</mat-form-field>
-		</form>
-		<div class="pl-2" *ngIf="(photoData$ | async) && file">
-			<ul class="padded-list">
-				<li>
-					<span class="font-weight-bold mr-2">
-						Largura (original/atual): </span>
-						{{ (photoData$ | async).naturalWidth | number }}px / {{ (photoData$ | async).width | number}}px
-				</li>
-				<li>
-					<span class="font-weight-bold mr-2">
-						Altura (original/atual): </span>
-						{{ (photoData$ | async).naturalHeight | number }}px / {{ (photoData$ | async).height | number }}px
-				</li>
-				<li>
-					<span class="font-weight-bold mr-2">
-						Tamanho: </span>
-						{{ file.size | filesize }}
-				</li>
-				<li>
-					<span class="font-weight-bold mr-2">
-						Última modificação: </span>
-						{{ file.lastModified | date }}
-				</li>
-			</ul>
-		</div>
+    <app-photo-form></app-photo-form>
 
 	</div>
 

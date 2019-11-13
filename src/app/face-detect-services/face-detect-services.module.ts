@@ -9,8 +9,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { DetectionAttributesComponent } from './detect/detection-attributes/detection-attributes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedComponentsModule } from '../shared/components/shared-components.module';
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { NgxFilesizeModule } from 'ngx-filesize';
+import { NgxSpinnerModule } from 'ngx-spinner'
 import { CompareComponent } from './compare/compare.component';
 import { CompareResultComponent } from './compare/compare-result/compare-result.component';
 
@@ -29,8 +28,7 @@ import { CompareResultComponent } from './compare/compare-result/compare-result.
     MaterialFileInputModule,
     HttpClientModule,
     NgxSpinnerModule,
-    SharedComponentsModule,
-    NgxFilesizeModule
+    SharedComponentsModule
   ]
 })
 export class FaceDetectServicesModule {}
