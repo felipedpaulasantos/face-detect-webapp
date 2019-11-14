@@ -1,7 +1,5 @@
 <mat-card [style.height.px]="innerHeight" class="overflow-auto">
 
-  {{ photoDimensions | json }}
-
   <mat-form-field *ngIf="detectionAttributesArray && detectionAttributesArray.length > 1">
     <mat-label>Faces detectadas</mat-label>
     <mat-select (selectionChange)="updateDetectionAttributes($event)">

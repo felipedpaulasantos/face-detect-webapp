@@ -2,8 +2,8 @@
   <mat-form-field class="w-100 px-5">
     <ngx-mat-file-input
       #imageInput
-      (change)="processFile($event)"
       [accept]="'image/png, image/jpeg, image/gif'"
+      (change)="processFile($event)"
       formControlName="imageFile"
       placeholder="Escolha uma imagem"
     ></ngx-mat-file-input>
@@ -12,17 +12,17 @@
     </button>
   </mat-form-field>
 </form>
-<div class="pl-2" *ngIf="photoElement && photoFile">
+<div class="pl-2" *ngIf="(photoElement$ | async) && photoFile">
   <ul class="padded-list">
     <li>
       <span class="font-weight-bold mr-2">
         Largura (original/atual): </span>
-        {{ photoElement.naturalWidth | number }}px / {{ photoElement.width | number}}px
+        {{ (photoElement$ | async).naturalWidth | number }}px / {{ (photoElement$ | async).width | number}}px
     </li>
     <li>
       <span class="font-weight-bold mr-2">
         Altura (original/atual): </span>
-        {{ photoElement.naturalHeight | number }}px / {{ photoElement.height | number }}px
+        {{ (photoElement$ | async).naturalHeight | number }}px / {{ (photoElement$ | async).height | number }}px
     </li>
     <li>
       <span class="font-weight-bold mr-2">

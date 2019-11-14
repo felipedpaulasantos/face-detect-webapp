@@ -1,13 +1,11 @@
 <div class="row pt-5 mx-0">
 
 	<div class="col-md-6">
-
 		<app-photo></app-photo>
-
 		<br>
-
-    <app-photo-form></app-photo-form>
-
+    <app-photo-form
+      (sendImageFile)="receiveImageFile($event)"
+    ></app-photo-form>
 	</div>
 
 	<div class="col-md-6">
