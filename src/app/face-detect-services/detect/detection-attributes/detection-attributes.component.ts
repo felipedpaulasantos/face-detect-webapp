@@ -1,11 +1,13 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, HostListener } from '@angular/core';
-import { DetectionAttributes } from './detection-attributes';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource, MatTabChangeEvent } from '@angular/material';
+import { trigger, state, style, transition, useAnimation } from '@angular/animations';
 import { Observable } from 'rxjs';
-import { CustomSnackBarService } from 'src/app/shared/components/custom-snack-bar/custom-snack-bar.service';
 
-declare var require: any;
+import { DetectionAttributes } from './detection-attributes';
+import { CustomSnackBarService } from '../../../shared/components/custom-snack-bar/custom-snack-bar.service';
+import { simpleFadeAnimation } from '../../../shared/animations/simple-fade.animation';
+import { CompareResult } from '../../compare/compare-result/compare-result';
 
 interface AttributesNode {
   name: string;
@@ -25,19 +27,35 @@ enum AttributeType {
 @Component({
   selector: 'app-detection-attributes',
   templateUrl: './detection-attributes.component.html',
-  styleUrls: ['./detection-attributes.component.scss']
+  styleUrls: ['./detection-attributes.component.scss'],
+  animations: [
+    // the fade-in/fade-out animation.
+    trigger('simpleFadeAnimation', [
+      state('in', style({opacity: 1})),
+      transition(':enter', [
+        useAnimation(simpleFadeAnimation, {
+          params: {
+            opacity: 0,
+            time: '0.5s'
+          }
+        })
+      ])
+    ])
+  ]
 })
-export class DetectionAttributesComponent implements OnInit, OnChanges {
+export class DetectionAttributesComponent implements OnChanges {
+
+  @ViewChild('tree', { static: false }) tree;
+  @ViewChild('tabGroup', { static: false }) tabGroup;
 
   @Input() detectionAttributes$: Observable<DetectionAttributes[]> = null;
   @Input() photoDimensions: PhotoDimensions;
+  @Input() compareResult$: Observable<CompareResult> = null;
+
   detectionAttributesArray: DetectionAttributes[] = [];
   detectionAttributes: DetectionAttributes = null;
-  @ViewChild('tree', { static: false }) tree;
-  @ViewChild('tabGroup', { static: false }) tabGroup;
-  innerHeight: number;
-  isTreeExpanded = false;
 
+  isTreeExpanded = false;
   treeControl = new NestedTreeControl<AttributesNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<AttributesNode>();
 
@@ -45,37 +63,21 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
     private snackBar: CustomSnackBarService
   ) {}
 
-  keepOriginalOrder = (a: any, b: any) => a.key;
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.setTabGroupMaxHeight();
-  }
-
-  ngOnInit() {
-    this.setTabGroupMaxHeight();
+  toggleTreeExpanded() {
+    this.isTreeExpanded ? this.tree.treeControl.collapseAll() : this.tree.treeControl.expandAll();
+    this.isTreeExpanded = !this.isTreeExpanded;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.updateDetectionAttributes();
   }
 
-  setTabGroupMaxHeight() {
-    this.innerHeight = window.innerHeight * 0.85;
-  }
-
-  toggleTreeExpanded() {
-    this.isTreeExpanded ? this.tree.treeControl.collapseAll() : this.tree.treeControl.expandAll();
-    this.isTreeExpanded = !this.isTreeExpanded;
-  }
-
-  updateDetectionAttributes(event?: any) {
+  updateDetectionAttributes(faceIndex?: any) {
     this.detectionAttributes$
-      .subscribe(attr => {
+      .subscribe((attr: DetectionAttributes[]) => {
         if (attr) {
-          this.snackBar.openSnackBar('Atributos atualizados', '', 'Success');
           this.detectionAttributesArray = attr;
-          this.detectionAttributes = event ? attr[event.value] : attr[0];
+          this.detectionAttributes = faceIndex ? attr[faceIndex.value] : attr[0];
           this.isTreeExpanded = false;
           this.buildTreeData(this.detectionAttributes);
         } else {

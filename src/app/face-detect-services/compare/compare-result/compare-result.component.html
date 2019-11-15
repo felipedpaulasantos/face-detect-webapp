@@ -1,1 +1,39 @@
+<div
+  class="d-flex h-100 align-items-center"
+  *ngIf="(compareResult$ | async) else noCompareResult"
+  [@simpleFadeAnimation]="'in'">
+  <h1 class="w-100 text-center text-muted">
+    <ng-container *ngIf="(compareResult$ | async).isIdentical">
+      <span class="d-flex align-items-center justify-content-center text-muted">
+        <i class="fas fa-check-circle fa-2x text-success mr-2"></i>
+        As faces conferem!
+      </span>
+      <br>
+      <span class="text-muted">
+        Grau de similaridade:
+        {{ (compareResult$ | async).confidence | percent }}
+      </span>
+    </ng-container>
+    <ng-container *ngIf="!(compareResult$ | async).isIdentical">
+      <span class="d-flex align-items-center justify-content-center text-muted">
+        <i class="fas fa-times-circle fa-2x text-danger mr-2"></i>
+        As faces não conferem!
+      </span>
+      <br>
+      <span class="text-muted">
+        Grau de similaridade:
+        {{ (compareResult$ | async).confidence | percent }}
+      </span>
+    </ng-container>
+  </h1>
+</div>
 
+<ng-template #noCompareResult>
+  <div
+    class="d-flex h-100 align-items-center"
+    [@simpleFadeAnimation]="'in'">
+    <h1 class="w-100 text-center text-muted">
+      Selecione uma imagem com exatamente duas faces para serem comparadas
+    </h1>
+  </div>
+</ng-template>

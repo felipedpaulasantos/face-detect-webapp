@@ -1,9 +1,18 @@
 <mat-card id="containerPhotoPreview" class="mx-auto d-flex align-items-center">
   <img
     #imagePreview
+    *ngIf="(src | async) else noImagePreview"
     id="photoPreview"
     class="img-fluid mx-auto"
-    [src]="src | async"
+    [@simpleFadeAnimation]="'in'"
+    [src]="(src | async)"
     (load)="onLoad()"
   >
+  <ng-template #noImagePreview>
+    <h2
+      class="w-100 text-center text-muted"
+      [@simpleFadeAnimation]="'in'">
+      Nenhuma imagem selecionada
+    </h2>
+  </ng-template>
 </mat-card>

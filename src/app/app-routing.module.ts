@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DetectComponent } from './face-detect-services/detect/detect.component';
+import { CompareComponent } from './face-detect-services/compare/compare.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,13 @@ const routes: Routes = [
     component: DetectComponent,
     data: {
       title: 'Detectar'
+    }
+  },
+  {
+    path: 'comparar',
+    component: CompareComponent,
+    data: {
+      title: 'Comparar'
     }
   },
   {

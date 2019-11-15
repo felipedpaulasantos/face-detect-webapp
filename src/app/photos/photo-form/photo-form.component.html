@@ -15,24 +15,32 @@
 <div class="pl-2" *ngIf="(photoElement$ | async) && photoFile">
   <ul class="padded-list">
     <li>
+      <i class="fas fa-arrows-alt-h mr-2"></i>
       <span class="font-weight-bold mr-2">
-        Largura (original/atual): </span>
-        {{ (photoElement$ | async).naturalWidth | number }}px / {{ (photoElement$ | async).width | number}}px
+        Largura (original/atual):
+      </span>
+      {{ (photoElement$ | async).naturalWidth | number }}px / {{ (photoElement$ | async).width | number}}px
     </li>
     <li>
+      <i class="fas fa-arrows-alt-v mr-2"></i>
       <span class="font-weight-bold mr-2">
-        Altura (original/atual): </span>
-        {{ (photoElement$ | async).naturalHeight | number }}px / {{ (photoElement$ | async).height | number }}px
+        Altura (original/atual):
+      </span>
+      {{ (photoElement$ | async).naturalHeight | number }}px / {{ (photoElement$ | async).height | number }}px
     </li>
     <li>
+      <i class="fas fa-weight-hanging mr-2"></i>
       <span class="font-weight-bold mr-2">
-        Tamanho: </span>
-        {{ photoFile.size | filesize }}
+        Tamanho:
+      </span>
+      {{ photoFile.size | filesize }}
     </li>
     <li>
+      <i class="fas fa-calendar-alt mr-2"></i>
       <span class="font-weight-bold mr-2">
-        Última modificação: </span>
-        {{ photoFile.lastModified | date }}
+        Última modificação:
+      </span>
+      {{ photoFile.lastModified | date }}
     </li>
   </ul>
 </div>

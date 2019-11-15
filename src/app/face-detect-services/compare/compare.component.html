@@ -1,1 +1,19 @@
-<p>compare works!</p>
+<div class="row pt-5 mx-0">
+
+	<div class="col-md-6">
+		<app-photo></app-photo>
+		<br>
+    <app-photo-form
+      (sendImageFile)="receiveImageFile($event)"
+    ></app-photo-form>
+	</div>
+
+	<div class="col-md-6">
+    <mat-card [style.height.px]="innerHeight" class="overflow-auto">
+      <app-compare-result
+        [compareResult$]="result$"
+      ></app-compare-result>
+    </mat-card>
+	</div>
+
+</div>

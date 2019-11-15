@@ -9,9 +9,12 @@
 	</div>
 
 	<div class="col-md-6">
-		<app-detection-attributes
-			[detectionAttributes$]="attributes$"
-		></app-detection-attributes>
+    <mat-card [style.height.px]="innerHeight" class="overflow-auto">
+      <app-detection-attributes
+        [detectionAttributes$]="attributes$"
+        [compareResult$]="result$"
+      ></app-detection-attributes>
+    </mat-card>
 	</div>
 
 </div>

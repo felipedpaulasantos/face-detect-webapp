@@ -1,11 +1,11 @@
 /* Extra small devices (phones, up to 480px) */
 @media screen and (max-width: 767px) {
 	#containerPhotoPreview {
-    width: 270px;
+    width: 414px;
     height: 270px;
   }
   #photoPreview {
-    max-width: 240px;
+    max-width: 384px;
     max-height: 240px;
   }
 }
@@ -13,11 +13,11 @@
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991px) {
 	#containerPhotoPreview {
-    width: 300px;
+    width: 462px;
     height: 300px;
   }
   #photoPreview {
-    max-width: 270px;
+    max-width: 432px;
     max-height: 270px;
   }
 }
@@ -37,11 +37,11 @@
 /* large desktops and up ----------- */
 @media screen and (min-width: 1200px) {
 	#containerPhotoPreview {
-    width: 400px;
+    width: 622px;
     height: 400px;
   }
   #photoPreview {
-    max-width: 370px;
+    max-width: 592px;
     max-height: 370px;
   }
 }
