@@ -50,7 +50,7 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
 
   @Input() detectionAttributes$: Observable<DetectionAttributes[]> = null;
   @Input() compareResult$: Observable<CompareResult> = null;
-  selectedFace$ = new Observable<DetectionAttributes>(null);
+  @Input() selectedFace$ = new Observable<DetectionAttributes>(null);
 
   detectionAttributesArray: DetectionAttributes[] = [];
   detectionAttributes: DetectionAttributes = null;
@@ -80,10 +80,15 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
 
     this.detectionAttributes$
       .subscribe((attr: DetectionAttributes[]) => {
+
         if (attr && attr.length > 0) {
+          if (attr.length === 1) { faceId = null; }
+
           this.detectionAttributesArray = attr;
-          this.photoService.setDetectionAttributes(attr);
-          const selectedFace = (faceId && faceId.value) ? attr.find(face => faceId.value === face.faceId) : attr[0];
+          let selectedFace = (faceId && faceId.value)
+            ? attr.find(face => faceId.value === face.faceId) || null
+            : attr[0];
+          if (!selectedFace) { selectedFace = attr[0]; }
           this.detectionAttributes = selectedFace;
           this.photoService.setSelectedFace(this.detectionAttributes.faceId);
 

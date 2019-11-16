@@ -8,7 +8,7 @@
     [src]="(src | async)"
     (load)="onLoad()"
   >
-  <ng-container *ngIf="(faceRectangles$ | async) && (showRectangle$ | async)">
+  <ng-container *ngIf="(faceRectangles$ | async) && (showRectangle$ | async) && (selectedFace$ | async)">
     <div
       *ngFor="let faceRectangle of (faceRectangles$ | async)"
       class="border"

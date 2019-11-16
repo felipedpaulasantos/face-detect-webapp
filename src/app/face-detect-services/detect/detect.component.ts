@@ -76,22 +76,20 @@ export class DetectComponent implements OnInit {
           return;
         }
 
-        this.photoService.setSelectedFace(detectionAttr[0].faceId);
-
         if (Number(detectionAttr.length) === 2) {
           this.detectService.verifyFaceToFace(detectionAttr[0].faceId, detectionAttr[1].faceId).subscribe(
             (compareResult: CompareResult) => {
-              this.attributesSource$.next(detectionAttr);
-              this.photoService.setCompareResult(compareResult);
               this.photoService.setDetectionAttributes(detectionAttr);
+              this.photoService.setCompareResult(compareResult);
+              this.attributesSource$.next(detectionAttr);
               this.snackBar.openSnackBar('Atributos atualizados', '', 'Success');
             },
             (errorResponse) => {
               this.snackBar.openSnackBar(errorResponse.error.error.message, '', 'Warn');
             });
         } else {
-          this.attributesSource$.next(detectionAttr);
           this.photoService.setDetectionAttributes(detectionAttr);
+          this.attributesSource$.next(detectionAttr);
           this.snackBar.openSnackBar('Atributos atualizados', '', 'Success');
         }
       },

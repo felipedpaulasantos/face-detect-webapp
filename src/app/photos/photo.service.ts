@@ -118,4 +118,15 @@ export class PhotoService {
     this.faceRectangles$.next(faceRectangles);
   }
 
+  reset() {
+    this.setPhotoFile(null);
+    this.setPhotoElement(null);
+    this.setPhotoSrc(null);
+    this.setDetectionAttributes(null);
+    this.setCompareResult(null);
+    this.setSelectedFace(null);
+    this.setFaceRectangles(null);
+    this.setShowRectangle(true);
+  }
+
 }

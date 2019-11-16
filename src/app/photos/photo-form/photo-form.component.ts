@@ -23,15 +23,15 @@ export class PhotoFormComponent implements OnInit {
   photoSrc: string = null;
   photoElement: HTMLImageElement = null;
   photoFile: File = null;
-
   photoElement$ = new Observable<HTMLImageElement>(null);
+
+  @Output() sendImageFile: EventEmitter<File> = new EventEmitter();
 
   imageForm = this.fb.group({
     imageFile: [null],
     showRectangle: [true]
   });
 
-  @Output() sendImageFile: EventEmitter<File> = new EventEmitter();
 
   ngOnInit() {
     this.photoElement$ = this.photoService.getPhotoElement();
@@ -62,12 +62,8 @@ export class PhotoFormComponent implements OnInit {
 
   clearImage(event: any) {
 
-    this.photoService.setPhotoSrc('');
-    this.photoService.setPhotoElement(null);
-    this.photoService.setFaceRectangles(null);
-    this.photoService.setCompareResult(null);
-    this.photoService.setDetectionAttributes(null);
-    this.photoService.setSelectedFace(null);
+    this.imageForm.get('imageFile').setValue(null);
+    this.photoService.reset();
     this.photoFile = null;
     this.sendImageFile.emit(null);
   }
