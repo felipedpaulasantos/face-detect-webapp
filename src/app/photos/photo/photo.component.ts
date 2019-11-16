@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { PhotoService } from '../photo.service';
 import { Observable } from 'rxjs';
 import { trigger, state, style, transition, useAnimation } from '@angular/animations';
@@ -32,9 +32,10 @@ export class PhotoComponent implements OnInit {
   showRectangle$ = new Observable<boolean>();
   marginLeft = 0;
   marginTop = 0;
+  image: HTMLImageElement;
 
   @ViewChild('imagePreview', { static: false }) imagePreview: ElementRef;
-  image: HTMLImageElement;
+  @Output() selectedFaceId = new EventEmitter<string>();
 
   constructor(
     private photoService: PhotoService
@@ -54,7 +55,8 @@ export class PhotoComponent implements OnInit {
     this.photoService.setPhotoElement(this.image);
   }
 
-  updateSelectedFace(faceId: string) {
+  updateSelectedFaceId(faceId: string) {
+    this.selectedFaceId.emit(faceId);
     this.photoService.setSelectedFace(faceId);
   }
 

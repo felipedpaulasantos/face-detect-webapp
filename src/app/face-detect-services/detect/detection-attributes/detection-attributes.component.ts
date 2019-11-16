@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, HostListener } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { MatTreeNestedDataSource, MatTabChangeEvent } from '@angular/material';
+import { MatTreeNestedDataSource } from '@angular/material';
 import { trigger, state, style, transition, useAnimation } from '@angular/animations';
 import { Observable } from 'rxjs';
 
@@ -8,6 +8,7 @@ import { DetectionAttributes } from './detection-attributes';
 import { simpleFadeAnimation } from '../../../shared/animations/simple-fade.animation';
 import { CompareResult } from '../../compare/compare-result/compare-result';
 import { PhotoService } from 'src/app/photos/photo.service';
+import { FormBuilder } from '@angular/forms';
 
 interface AttributesNode {
   name: string;
@@ -43,14 +44,23 @@ enum AttributeType {
     ])
   ]
 })
-export class DetectionAttributesComponent implements OnInit, OnChanges {
+export class DetectionAttributesComponent implements OnChanges {
+
+  constructor(
+    private photoService: PhotoService,
+    private fb: FormBuilder
+  ) {}
+
+  faceSelectForm = this.fb.group({
+    selectId: [null]
+  });
 
   @ViewChild('tree', { static: false }) tree;
   @ViewChild('tabGroup', { static: false }) tabGroup;
 
   @Input() detectionAttributes$: Observable<DetectionAttributes[]> = null;
   @Input() compareResult$: Observable<CompareResult> = null;
-  @Input() selectedFace$ = new Observable<DetectionAttributes>(null);
+  @Input() selectedFaceId: string;
 
   detectionAttributesArray: DetectionAttributes[] = [];
   detectionAttributes: DetectionAttributes = null;
@@ -59,16 +69,9 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
   treeControl = new NestedTreeControl<AttributesNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<AttributesNode>();
 
-  constructor(
-    private photoService: PhotoService
-  ) {}
-
-  ngOnInit() {
-    this.selectedFace$ = this.photoService.getSelectedFace();
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.updateDetectionAttributes();
+    this.updateDetectionAttributes(this.selectedFaceId);
   }
 
   toggleTreeExpanded() {
@@ -82,18 +85,20 @@ export class DetectionAttributesComponent implements OnInit, OnChanges {
       .subscribe((attr: DetectionAttributes[]) => {
 
         if (attr && attr.length > 0) {
-          if (attr.length === 1) { faceId = null; }
 
+          if (attr.length === 1) { faceId = null; }
           this.detectionAttributesArray = attr;
-          let selectedFace = (faceId && faceId.value)
-            ? attr.find(face => faceId.value === face.faceId) || null
+          let selectedFace = (faceId)
+            ? attr.find(face => faceId === face.faceId) || null
             : attr[0];
           if (!selectedFace) { selectedFace = attr[0]; }
+          this.faceSelectForm.get('selectId').setValue(faceId);
           this.detectionAttributes = selectedFace;
           this.photoService.setSelectedFace(this.detectionAttributes.faceId);
 
           this.isTreeExpanded = false;
           this.buildTreeData(this.detectionAttributes);
+
         } else {
           this.detectionAttributes = null;
           this.detectionAttributesArray = [];

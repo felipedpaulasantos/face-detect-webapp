@@ -32,7 +32,6 @@ export class PhotoFormComponent implements OnInit {
     showRectangle: [true]
   });
 
-
   ngOnInit() {
     this.photoElement$ = this.photoService.getPhotoElement();
   }

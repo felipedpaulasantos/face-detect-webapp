@@ -1,7 +1,9 @@
 <div class="row pt-5 mx-0">
 
 	<div class="col-md-6">
-		<app-photo></app-photo>
+    <app-photo
+      (selectedFaceId)="updateSelectedFaceId($event)"
+    ></app-photo>
 		<br>
     <app-photo-form
       (sendImageFile)="receiveImageFile($event)"
@@ -13,6 +15,7 @@
       <app-detection-attributes
         [detectionAttributes$]="attributes$"
         [compareResult$]="result$"
+        [selectedFaceId]="selectedFaceId"
       ></app-detection-attributes>
     </mat-card>
 	</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -20,6 +20,7 @@ export class DetectComponent implements OnInit {
   photoElement$ = new Observable<HTMLImageElement>(null);
   photoFile$ = new Observable<File>(null);
 
+  @Input() selectedFaceId: string;
   @ViewChild('imageInput', null) imageInput;
   @ViewChild(PhotoComponent, { static: false }) photoComponent: PhotoComponent;
 
@@ -55,6 +56,10 @@ export class DetectComponent implements OnInit {
 
   setTabGroupMaxHeight() {
     this.innerHeight = window.innerHeight * 0.90;
+  }
+
+  updateSelectedFaceId(faceId: any) {
+    this.selectedFaceId = faceId;
   }
 
   receiveImageFile(file: File) {
