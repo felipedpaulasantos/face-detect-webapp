@@ -12,6 +12,7 @@
     </button>
   </mat-form-field>
   <mat-slide-toggle
+    *ngIf="(faceRectangles$ | async)"
     class="px-5"
     [hidden]="!photoFile"
     (change)="toggleRectangleVisibility($event)"

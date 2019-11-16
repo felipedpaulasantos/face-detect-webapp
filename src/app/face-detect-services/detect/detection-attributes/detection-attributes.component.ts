@@ -3,12 +3,12 @@ import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material';
 import { trigger, state, style, transition, useAnimation } from '@angular/animations';
 import { Observable } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
 
 import { DetectionAttributes } from './detection-attributes';
 import { simpleFadeAnimation } from '../../../shared/animations/simple-fade.animation';
 import { CompareResult } from '../../compare/compare-result/compare-result';
 import { PhotoService } from 'src/app/photos/photo.service';
-import { FormBuilder } from '@angular/forms';
 
 interface AttributesNode {
   name: string;
@@ -62,21 +62,15 @@ export class DetectionAttributesComponent implements OnChanges {
   @Input() compareResult$: Observable<CompareResult> = null;
   @Input() selectedFaceId: string;
 
+  treeData: AttributesNode[];
   detectionAttributesArray: DetectionAttributes[] = [];
   detectionAttributes: DetectionAttributes = null;
 
-  isTreeExpanded = false;
   treeControl = new NestedTreeControl<AttributesNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<AttributesNode>();
 
-
   ngOnChanges(changes: SimpleChanges): void {
     this.updateDetectionAttributes(this.selectedFaceId);
-  }
-
-  toggleTreeExpanded() {
-    this.isTreeExpanded ? this.tree.treeControl.collapseAll() : this.tree.treeControl.expandAll();
-    this.isTreeExpanded = !this.isTreeExpanded;
   }
 
   updateDetectionAttributes(faceId?: any) {
@@ -96,7 +90,6 @@ export class DetectionAttributesComponent implements OnChanges {
           this.detectionAttributes = selectedFace;
           this.photoService.setSelectedFace(this.detectionAttributes.faceId);
 
-          this.isTreeExpanded = false;
           this.buildTreeData(this.detectionAttributes);
 
         } else {
@@ -257,7 +250,7 @@ export class DetectionAttributesComponent implements OnChanges {
       };
     }
 
-    const TREE_DATA: AttributesNode[] = [
+    this.treeData = [
       {name: 'Idade', value: `${attr.faceAttributes.age}`, type: AttributeType.NUMBER},
       {name: 'Gênero', value: `${attr.faceAttributes.gender}`, type: AttributeType.GENDER},
       {name: 'Sorriso', value: `${attr.faceAttributes.smile}`, type: AttributeType.PERCENT},
@@ -265,8 +258,6 @@ export class DetectionAttributesComponent implements OnChanges {
       emotion, facialHair, hair, headPose, makeup, accessories, occlusion, blur, exposure, noise
     ];
 
-    this.dataSource.data = TREE_DATA;
-    this.treeControl.dataNodes = TREE_DATA;
   }
 
 
