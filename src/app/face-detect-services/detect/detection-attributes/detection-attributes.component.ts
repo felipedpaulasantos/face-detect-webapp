@@ -5,9 +5,9 @@ import { trigger, state, style, transition, useAnimation } from '@angular/animat
 import { Observable } from 'rxjs';
 
 import { DetectionAttributes } from './detection-attributes';
-import { CustomSnackBarService } from '../../../shared/components/custom-snack-bar/custom-snack-bar.service';
 import { simpleFadeAnimation } from '../../../shared/animations/simple-fade.animation';
 import { CompareResult } from '../../compare/compare-result/compare-result';
+import { PhotoService } from 'src/app/photos/photo.service';
 
 interface AttributesNode {
   name: string;
@@ -43,14 +43,14 @@ enum AttributeType {
     ])
   ]
 })
-export class DetectionAttributesComponent implements OnChanges {
+export class DetectionAttributesComponent implements OnInit, OnChanges {
 
   @ViewChild('tree', { static: false }) tree;
   @ViewChild('tabGroup', { static: false }) tabGroup;
 
   @Input() detectionAttributes$: Observable<DetectionAttributes[]> = null;
-  @Input() photoDimensions: PhotoDimensions;
   @Input() compareResult$: Observable<CompareResult> = null;
+  selectedFace$ = new Observable<DetectionAttributes>(null);
 
   detectionAttributesArray: DetectionAttributes[] = [];
   detectionAttributes: DetectionAttributes = null;
@@ -60,24 +60,33 @@ export class DetectionAttributesComponent implements OnChanges {
   dataSource = new MatTreeNestedDataSource<AttributesNode>();
 
   constructor(
-    private snackBar: CustomSnackBarService
+    private photoService: PhotoService
   ) {}
 
-  toggleTreeExpanded() {
-    this.isTreeExpanded ? this.tree.treeControl.collapseAll() : this.tree.treeControl.expandAll();
-    this.isTreeExpanded = !this.isTreeExpanded;
+  ngOnInit() {
+    this.selectedFace$ = this.photoService.getSelectedFace();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.updateDetectionAttributes();
   }
 
-  updateDetectionAttributes(faceIndex?: any) {
+  toggleTreeExpanded() {
+    this.isTreeExpanded ? this.tree.treeControl.collapseAll() : this.tree.treeControl.expandAll();
+    this.isTreeExpanded = !this.isTreeExpanded;
+  }
+
+  updateDetectionAttributes(faceId?: any) {
+
     this.detectionAttributes$
       .subscribe((attr: DetectionAttributes[]) => {
-        if (attr) {
+        if (attr && attr.length > 0) {
           this.detectionAttributesArray = attr;
-          this.detectionAttributes = faceIndex ? attr[faceIndex.value] : attr[0];
+          this.photoService.setDetectionAttributes(attr);
+          const selectedFace = (faceId && faceId.value) ? attr.find(face => faceId.value === face.faceId) : attr[0];
+          this.detectionAttributes = selectedFace;
+          this.photoService.setSelectedFace(this.detectionAttributes.faceId);
+
           this.isTreeExpanded = false;
           this.buildTreeData(this.detectionAttributes);
         } else {
@@ -85,15 +94,6 @@ export class DetectionAttributesComponent implements OnChanges {
           this.detectionAttributesArray = [];
         }
       });
-  }
-
-  drawFaceRectangle(tabChangeEvent: MatTabChangeEvent) {
-
-    if (tabChangeEvent.tab.textLabel === 'Localização') {
-      // TO DO
-      // Desenhar um retângulo no(s) rosto(s) da imagem,
-      // conforme coordenadas do objeto detectionAttributes[i].faceLandmarks, caso exista
-    }
   }
 
   hasChild = (_: number, node: AttributesNode) => !!node.children && node.children.length > 0;

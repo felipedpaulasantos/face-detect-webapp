@@ -10,7 +10,7 @@ export interface DetectionAttributes {
 export interface FaceRectangle {
 
     width?: number;
-    heigth?: number;
+    height?: number;
     left?: number;
     top?: number;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 import { FaceDetectService } from '../face-detect.service';
 import { DetectionAttributes } from './detection-attributes/detection-attributes';
@@ -17,17 +17,17 @@ export class DetectComponent implements OnInit {
 
   innerHeight: number;
   photoSrc$ = new Observable<string>();
-  photoData$ = new Observable<HTMLImageElement>(null);
+  photoElement$ = new Observable<HTMLImageElement>(null);
   photoFile$ = new Observable<File>(null);
 
   @ViewChild('imageInput', null) imageInput;
   @ViewChild(PhotoComponent, { static: false }) photoComponent: PhotoComponent;
 
-  private detectionAttributesSource = new BehaviorSubject<DetectionAttributes[]>(null);
-  attributes$ = this.detectionAttributesSource.asObservable();
+  private attributesSource$ = new BehaviorSubject<DetectionAttributes[]>(null);
+  attributes$ = this.attributesSource$.asObservable();
 
-  private resultSource = new BehaviorSubject<CompareResult>(null);
-  result$ = this.resultSource.asObservable();
+  private resultSource$ = new BehaviorSubject<CompareResult>(null);
+  result$ = this.resultSource$.asObservable();
 
   constructor(
     private fb: FormBuilder,
@@ -41,9 +41,10 @@ export class DetectComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.photoData$ = this.photoService.photoElement$;
-    this.photoSrc$ = this.photoService.photoSrc$;
-    this.photoFile$ = this.photoService.photoFile$;
+    this.photoElement$ = this.photoService.getPhotoElement();
+    this.photoSrc$ = this.photoService.getPhotoSrc();
+    this.photoFile$ = this.photoService.getPhotoFile();
+    this.result$ = this.photoService.getCompareResult();
     this.setTabGroupMaxHeight();
   }
 
@@ -59,7 +60,8 @@ export class DetectComponent implements OnInit {
   receiveImageFile(file: File) {
 
     if (!file) {
-      this.detectionAttributesSource.next(null);
+      this.attributesSource$.next(null);
+      this.photoService.setDetectionAttributes(null);
       return;
     }
 
@@ -74,18 +76,22 @@ export class DetectComponent implements OnInit {
           return;
         }
 
+        this.photoService.setSelectedFace(detectionAttr[0].faceId);
+
         if (Number(detectionAttr.length) === 2) {
           this.detectService.verifyFaceToFace(detectionAttr[0].faceId, detectionAttr[1].faceId).subscribe(
             (compareResult: CompareResult) => {
-              this.resultSource.next(compareResult);
-              this.detectionAttributesSource.next(detectionAttr);
+              this.attributesSource$.next(detectionAttr);
+              this.photoService.setCompareResult(compareResult);
+              this.photoService.setDetectionAttributes(detectionAttr);
               this.snackBar.openSnackBar('Atributos atualizados', '', 'Success');
             },
             (errorResponse) => {
               this.snackBar.openSnackBar(errorResponse.error.error.message, '', 'Warn');
             });
         } else {
-          this.detectionAttributesSource.next(detectionAttr);
+          this.attributesSource$.next(detectionAttr);
+          this.photoService.setDetectionAttributes(detectionAttr);
           this.snackBar.openSnackBar('Atributos atualizados', '', 'Success');
         }
       },

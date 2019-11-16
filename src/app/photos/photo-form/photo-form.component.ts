@@ -27,13 +27,14 @@ export class PhotoFormComponent implements OnInit {
   photoElement$ = new Observable<HTMLImageElement>(null);
 
   imageForm = this.fb.group({
-    imageFile: [null]
+    imageFile: [null],
+    showRectangle: [true]
   });
 
   @Output() sendImageFile: EventEmitter<File> = new EventEmitter();
 
   ngOnInit() {
-    this.photoElement$ = this.photoService.photoElement$;
+    this.photoElement$ = this.photoService.getPhotoElement();
   }
 
   processFile(imageInput: any) {
@@ -44,21 +45,29 @@ export class PhotoFormComponent implements OnInit {
     }
 
     this.photoFile = imageInput.target.files[0];
-    this.photoService.photoFile$.next(this.photoFile);
+    this.photoService.setPhotoFile(this.photoFile);
 
     const reader = new FileReader();
     reader.addEventListener('load', (event: any) => {
       this.photoSrc = event.target.result;
-      this.photoService.photoSrc$.next(this.photoSrc);
+      this.photoService.setPhotoSrc(this.photoSrc);
     });
     reader.readAsDataURL(this.photoFile);
     this.sendImageFile.emit(this.photoFile);
   }
 
+  toggleRectangleVisibility(event: any) {
+    this.photoService.setShowRectangle(event.checked);
+  }
+
   clearImage(event: any) {
 
-    this.photoService.photoSrc$.next('');
-    this.photoService.photoElement$.next(null);
+    this.photoService.setPhotoSrc('');
+    this.photoService.setPhotoElement(null);
+    this.photoService.setFaceRectangles(null);
+    this.photoService.setCompareResult(null);
+    this.photoService.setDetectionAttributes(null);
+    this.photoService.setSelectedFace(null);
     this.photoFile = null;
     this.sendImageFile.emit(null);
   }

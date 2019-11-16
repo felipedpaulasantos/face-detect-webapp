@@ -11,6 +11,13 @@
       <mat-icon>clear</mat-icon>
     </button>
   </mat-form-field>
+  <mat-slide-toggle
+    class="px-5"
+    [hidden]="!photoFile"
+    (change)="toggleRectangleVisibility($event)"
+    formControlName="showRectangle">
+    Exibir retângulos
+  </mat-slide-toggle>
 </form>
 <div class="pl-2" *ngIf="(photoElement$ | async) && photoFile">
   <ul class="padded-list">

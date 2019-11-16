@@ -1,7 +1,7 @@
 <mat-form-field *ngIf="detectionAttributesArray && detectionAttributesArray.length > 1">
   <mat-label>Faces detectadas</mat-label>
   <mat-select (selectionChange)="updateDetectionAttributes($event)">
-    <mat-option *ngFor="let attr of detectionAttributesArray" [value]="detectionAttributesArray.indexOf(attr)">
+    <mat-option *ngFor="let attr of detectionAttributesArray" [value]="attr.faceId">
       {{attr.faceId}}
     </mat-option>
   </mat-select>
@@ -11,7 +11,6 @@
   #tabGroup
   [ngClass]="(detectionAttributesArray && detectionAttributesArray.length > 1) ? 'h-85' : 'h-100'"
   *ngIf="detectionAttributes else noAttributes"
-  (selectedTabChange)="drawFaceRectangle($event)"
   mat-stretch-tabs
   [@simpleFadeAnimation]="'in'">
   <mat-tab label="Atributos">
@@ -111,6 +110,13 @@
   </mat-tab>
 
 
+  <mat-tab *ngIf="(compareResult$ | async)" label="Comparação">
+    <app-compare-result
+      [compareResult$]="compareResult$"
+    ></app-compare-result>
+  </mat-tab>
+
+
   <mat-tab *ngIf="detectionAttributes && detectionAttributes.faceRectangle" label="Localização">
     <ul class="list-unstyled" *ngFor="let item of detectionAttributes.faceRectangle | keyvalue:keepOriginalOrder">
       <li>
@@ -132,13 +138,6 @@
         </span>
       </li>
     </ul>
-  </mat-tab>
-
-
-  <mat-tab *ngIf="(compareResult$ | async)" label="Comparação">
-    <app-compare-result
-      [compareResult$]="compareResult$"
-    ></app-compare-result>
   </mat-tab>
 </mat-tab-group>
 

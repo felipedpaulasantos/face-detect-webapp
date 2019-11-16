@@ -28,7 +28,7 @@ export class CustomSnackBarService {
         panelClass = 'bg-warning';
         break;
       case 'Info':
-        panelClass = '';
+        panelClass = 'bg-info';
         break;
     }
 
@@ -36,7 +36,6 @@ export class CustomSnackBarService {
       duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
-      panelClass,
       data: { message, snackType }
     });
   }

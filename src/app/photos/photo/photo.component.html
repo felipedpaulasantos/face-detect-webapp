@@ -8,6 +8,24 @@
     [src]="(src | async)"
     (load)="onLoad()"
   >
+  <ng-container *ngIf="(faceRectangles$ | async) && (showRectangle$ | async)">
+    <div
+      *ngFor="let faceRectangle of (faceRectangles$ | async)"
+      class="border"
+      [ngClass]="{'border-warning': faceRectangle.faceId == (selectedFace$ | async).faceId}"
+      [ngStyle]="{
+        'position': 'absolute',
+        'top.px': faceRectangle.top,
+        'marginTop.px': marginTop,
+        'left.px': faceRectangle.left,
+        'marginLeft.px': marginLeft,
+        'height.px': faceRectangle.height,
+        'width.px': faceRectangle.width
+      }"
+      (click)="updateSelectedFace(faceRectangle.faceId)"
+      matTooltip="{{ faceRectangle.faceId }}"
+    ></div>
+  </ng-container>
   <ng-template #noImagePreview>
     <h2
       class="w-100 text-center text-muted"
