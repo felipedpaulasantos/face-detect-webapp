@@ -38,7 +38,7 @@ export class DetectComponent implements OnInit {
   ) {}
 
   imageForm = this.fb.group({
-    imageFile: [null]
+    arquivoImagem: [null]
   });
 
   ngOnInit() {
@@ -71,7 +71,7 @@ export class DetectComponent implements OnInit {
     }
 
     const formData = new FormData();
-    formData.append('imageFile', file);
+    formData.append('arquivoImagem', file);
 
     this.detectService.detect(formData).subscribe(
       (detectionAttr: DetectionAttributes[]) => {
@@ -99,7 +99,8 @@ export class DetectComponent implements OnInit {
         }
       },
       (err) => {
-        this.snackBar.openSnackBar('Houve um erro ao consultar a API!', '', 'Error');
+        console.error(err);
+        this.snackBar.openSnackBar(`${err.error.error.message}`, '', 'Error');
       });
   }
 

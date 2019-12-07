@@ -106,6 +106,10 @@ export class PhotoService {
       const width = attr.faceRectangle.width / widthProportion;
       const height = attr.faceRectangle.height / heightProportion;
 
+      console.log(attr.faceRectangle.top, attr.faceRectangle.left, attr.faceRectangle.width, attr.faceRectangle.height);
+      console.log(widthProportion, heightProportion);
+      console.log(top, left, width, height);
+
       faceRectangles.push({
         faceId: attr.faceId,
         top,

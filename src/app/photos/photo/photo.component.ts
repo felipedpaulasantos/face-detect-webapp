@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, QueryList } from '@angular/core';
 import { PhotoService } from '../photo.service';
 import { Observable } from 'rxjs';
 import { trigger, state, style, transition, useAnimation } from '@angular/animations';
@@ -34,6 +34,7 @@ export class PhotoComponent implements OnInit {
   marginTop = 0;
   image: HTMLImageElement;
 
+  @ViewChild('containerPhotoPreview', { read: ElementRef, static: false }) photoPreview: ElementRef;
   @ViewChild('imagePreview', { static: false }) imagePreview: ElementRef;
   @Output() selectedFaceId = new EventEmitter<string>();
 
@@ -49,9 +50,17 @@ export class PhotoComponent implements OnInit {
   }
 
   onLoad() {
+
     this.image = this.imagePreview.nativeElement;
-    this.marginLeft = Number.parseInt(window.getComputedStyle(this.image).marginLeft, 10);
-    this.marginTop = Number.parseInt(window.getComputedStyle(this.image).marginTop, 10);
+
+    const containerPaddingLeft = Number.parseInt(window.getComputedStyle(this.photoPreview.nativeElement).paddingLeft, 10);
+    const imageMarginLeft = Number.parseInt(window.getComputedStyle(this.image).marginLeft, 10);
+    this.marginLeft = imageMarginLeft + containerPaddingLeft;
+
+    const containerPaddingTop = Number.parseInt(window.getComputedStyle(this.photoPreview.nativeElement).paddingTop, 10);
+    const imageMarginTop = Number.parseInt(window.getComputedStyle(this.image).marginTop, 10);
+    this.marginTop = imageMarginTop + containerPaddingTop;
+
     this.photoService.setPhotoElement(this.image);
   }
 

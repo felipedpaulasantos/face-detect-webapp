@@ -1,4 +1,4 @@
-<mat-card id="containerPhotoPreview" class="mx-auto d-flex align-items-center">
+<mat-card #containerPhotoPreview id="containerPhotoPreview" class="mx-auto d-flex align-items-center">
   <img
     #imagePreview
     *ngIf="(src | async) else noImagePreview"
@@ -15,10 +15,8 @@
       [ngClass]="{'border-warning': faceRectangle.faceId == (selectedFace$ | async).faceId}"
       [ngStyle]="{
         'position': 'absolute',
-        'top.px': faceRectangle.top,
-        'marginTop.px': marginTop,
-        'left.px': faceRectangle.left,
-        'marginLeft.px': marginLeft,
+        'top.px': (faceRectangle.top + marginTop),
+        'left.px': (faceRectangle.left + marginLeft),
         'height.px': faceRectangle.height,
         'width.px': faceRectangle.width
       }"

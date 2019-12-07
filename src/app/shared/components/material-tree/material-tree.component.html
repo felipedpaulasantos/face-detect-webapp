@@ -2,6 +2,12 @@
   <mat-icon class="mat-icon-rtl-mirror">
     {{isTreeExpanded ? 'expand_more' : 'chevron_right'}}
   </mat-icon>
+  <ng-container *ngIf="isTreeExpanded else treeIsCollapsed">
+    Ocultar
+  </ng-container>
+  <ng-template #treeIsCollapsed>
+    Expandir
+  </ng-template>
 </button>
 <mat-tree
   #tree

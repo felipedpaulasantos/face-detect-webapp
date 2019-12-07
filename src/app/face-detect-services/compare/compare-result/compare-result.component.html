@@ -8,23 +8,19 @@
         <i class="fas fa-check-circle fa-2x text-success mr-2"></i>
         As faces conferem!
       </span>
-      <br>
-      <span class="text-muted">
-        Grau de similaridade:
-        {{ (compareResult$ | async).confidence | percent }}
-      </span>
     </ng-container>
     <ng-container *ngIf="!(compareResult$ | async).isIdentical">
       <span class="d-flex align-items-center justify-content-center text-muted">
         <i class="fas fa-times-circle fa-2x text-danger mr-2"></i>
         As faces não conferem!
       </span>
-      <br>
-      <span class="text-muted">
-        Grau de similaridade:
-        {{ (compareResult$ | async).confidence | percent }}
-      </span>
     </ng-container>
+    <br>
+    <span class="text-muted">
+      Grau de similaridade:
+      <br>
+      {{ (compareResult$ | async).confidence | percent }}
+    </span>
   </h1>
 </div>
 

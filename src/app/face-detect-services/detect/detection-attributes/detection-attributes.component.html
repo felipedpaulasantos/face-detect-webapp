@@ -11,7 +11,7 @@
 
 <mat-tab-group
   #tabGroup
-  [ngClass]="(detectionAttributesArray && detectionAttributesArray.length > 1) ? 'h-85' : 'h-100'"
+  [ngClass]="(detectionAttributesArray && detectionAttributesArray.length > 1) ? 'h-90' : 'h-100'"
   *ngIf="detectionAttributes else noAttributes"
   mat-stretch-tabs
   [@simpleFadeAnimation]="'in'">
@@ -36,7 +36,7 @@
 
 
   <mat-tab *ngIf="detectionAttributes && detectionAttributes.faceRectangle" label="Localização">
-    <ul class="list-unstyled" *ngFor="let item of detectionAttributes.faceRectangle | keyvalue:keepOriginalOrder">
+    <ul class="list-unstyled" *ngFor="let item of detectionAttributes.faceRectangle | keyvalue">
       <li>
         <span class="font-weight-bold mr-2">{{ item.key }}: </span>
         {{ item.value | number }}
@@ -46,7 +46,7 @@
 
 
   <mat-tab *ngIf="detectionAttributes && detectionAttributes.faceLandmarks" label="Pontos de referência">
-    <ul class="list-unstyled" *ngFor="let item of detectionAttributes.faceLandmarks | keyvalue:keepOriginalOrder">
+    <ul class="list-unstyled" *ngFor="let item of detectionAttributes.faceLandmarks | keyvalue">
       <li>
         <span>{{ item.key }}: </span>
         <span *ngFor="let item of item.value | keyvalue">

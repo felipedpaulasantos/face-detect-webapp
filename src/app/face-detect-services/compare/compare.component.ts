@@ -41,7 +41,7 @@ export class CompareComponent implements OnInit {
     }
 
     const formData = new FormData();
-    formData.append('imageFile', file);
+    formData.append('arquivoImagem', file);
 
     this.faceDetect.compare(formData).subscribe(
       (response: CompareResult) => {
