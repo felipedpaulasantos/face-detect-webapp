@@ -29,7 +29,7 @@ export class PhotoFormComponent implements OnInit {
   @Output() sendImageFile: EventEmitter<File> = new EventEmitter();
 
   imageForm = this.fb.group({
-    imageFile: [null],
+    arquivoImagem: [null],
     showRectangle: [true]
   });
 
@@ -39,7 +39,6 @@ export class PhotoFormComponent implements OnInit {
   }
 
   processFile(imageInput: any) {
-
     if (!imageInput || !imageInput.target || !imageInput.target.files[0]) {
       this.snackBar.openSnackBar('Arquivo inexistente ou inválido', '', 'Warn');
       return;
@@ -62,8 +61,7 @@ export class PhotoFormComponent implements OnInit {
   }
 
   clearImage(event: any) {
-
-    this.imageForm.get('imageFile').setValue(null);
+    this.imageForm.get('arquivoImagem').setValue(null);
     this.photoService.reset();
     this.photoFile = null;
     this.sendImageFile.emit(null);

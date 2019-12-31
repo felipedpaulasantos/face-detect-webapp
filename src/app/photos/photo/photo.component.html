@@ -15,10 +15,8 @@
       [ngClass]="{'border-warning': faceRectangle.faceId == (selectedFace$ | async).faceId}"
       [ngStyle]="{
         'position': 'absolute',
-        'top.px': faceRectangle.top,
-        'marginTop.px': marginTop,
-        'left.px': faceRectangle.left,
-        'marginLeft.px': marginLeft,
+        'top.px': faceRectangle.top + marginTop,
+        'left.px': faceRectangle.left + marginLeft,
         'height.px': faceRectangle.height,
         'width.px': faceRectangle.width
       }"

@@ -4,7 +4,7 @@
       #imageInput
       [accept]="'image/png, image/jpeg, image/gif'"
       (change)="processFile($event)"
-      formControlName="imageFile"
+      formControlName="arquivoImagem"
       placeholder="Escolha uma imagem"
     ></ngx-mat-file-input>
     <button mat-icon-button matSuffix *ngIf="!imageInput.empty" (click)="clearImage($event)">

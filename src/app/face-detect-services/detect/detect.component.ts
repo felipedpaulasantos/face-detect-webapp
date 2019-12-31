@@ -71,7 +71,9 @@ export class DetectComponent implements OnInit {
     }
 
     const formData = new FormData();
-    formData.append('imageFile', file);
+    formData.append('arquivoImagem', file);
+
+    console.log(formData);
 
     this.detectService.detect(formData).subscribe(
       (detectionAttr: DetectionAttributes[]) => {
