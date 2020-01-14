@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SidenavService } from './menu/sidenav/sidenav.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'face-detect-webapp';
+
+  constructor(
+    protected sidenavService: SidenavService
+  ) {}
 }

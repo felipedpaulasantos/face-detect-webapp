@@ -30,7 +30,7 @@ export class CompareComponent implements OnInit {
   }
 
   setTabGroupMaxHeight() {
-    this.innerHeight = window.innerHeight * 0.85;
+    this.innerHeight = window.innerHeight * 0.90;
   }
 
   receiveImageFile(file: File) {

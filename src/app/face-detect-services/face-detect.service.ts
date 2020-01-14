@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DetectedFace } from './detected-face';
+import { environment } from 'src/environments/environment';
+
+const API = environment.api;
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class FaceDetectService {
 
   detect(formData: FormData) {
     return this.http.post(
-      '/facedetect/v1/detectar',
+      `${API}/detectar`,
       formData,
       {
         params: {
@@ -27,14 +29,14 @@ export class FaceDetectService {
 
   compare(formData: FormData) {
     return this.http.post(
-      '/facedetect/v1/comparar',
+      `${API}/comparar`,
       formData
     );
   }
 
   verifyFaceToFace(faceId1: string, faceId2: string) {
     return this.http.post(
-      'facedetect/v1/verificar-faces',
+      `${API}/verificar-faces`,
       { faceId1, faceId2 }
     );
   }

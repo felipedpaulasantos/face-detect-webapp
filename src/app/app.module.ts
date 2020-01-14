@@ -14,6 +14,7 @@ import { SharedComponentsModule } from './shared/components/shared-components.mo
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './shared/interceptors/loader-interceptor';
 import { CustomSnackBarComponent } from './shared/components/custom-snack-bar/custom-snack-bar.component';
+import { MenuModule } from './menu/menu.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CustomSnackBarComponent } from './shared/components/custom-snack-bar/cu
     MaterialModule,
     PhotosModule,
     FaceDetectServicesModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    MenuModule
   ],
   exports: [],
   providers: [

@@ -16,6 +16,7 @@ import { CompareResult } from '../compare/compare-result/compare-result';
 export class DetectComponent implements OnInit {
 
   innerHeight: number;
+  heightProportion = 0.85;
   photoSrc$ = new Observable<string>();
   photoElement$ = new Observable<HTMLImageElement>(null);
   photoFile$ = new Observable<File>(null);
@@ -55,7 +56,7 @@ export class DetectComponent implements OnInit {
   }
 
   setTabGroupMaxHeight() {
-    this.innerHeight = window.innerHeight * 0.90;
+    this.innerHeight = window.innerHeight * this.heightProportion;
   }
 
   updateSelectedFaceId(faceId: any) {
@@ -72,8 +73,6 @@ export class DetectComponent implements OnInit {
 
     const formData = new FormData();
     formData.append('arquivoImagem', file);
-
-    console.log(formData);
 
     this.detectService.detect(formData).subscribe(
       (detectionAttr: DetectionAttributes[]) => {

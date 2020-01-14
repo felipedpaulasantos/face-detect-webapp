@@ -1,4 +1,15 @@
 <app-ngx-spinner-default></app-ngx-spinner-default>
-<div class="h-100 bg-light">
-  <router-outlet></router-outlet>
-</div>
+
+<app-toolbar></app-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" class="w-25" [opened]="sidenavService.isOpened()">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="bg-light">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
