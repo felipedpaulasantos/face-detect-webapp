@@ -11,11 +11,11 @@ export class SidenavService {
   private opened = new BehaviorSubject<boolean>(false);
 
   toggle() {
-    this.opened.next(!this.isOpened());
+    this.opened.next(!this.opened.value);
   }
 
   isOpened() {
-    return this.opened.value;
+    return this.opened.asObservable();
   }
 
 }

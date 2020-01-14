@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <button mat-icon-button (click)="toggleSidenav()">
-    <mat-icon>menu</mat-icon>
+    <mat-icon>{{ (isSidenavOpened | async) ? 'menu_open' : 'menu' }}</mat-icon>
   </button>
   <span>Face Detect</span>
 </mat-toolbar>

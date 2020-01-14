@@ -2,8 +2,9 @@
 
 <app-toolbar></app-toolbar>
 
-<mat-sidenav-container>
-  <mat-sidenav #sidenav mode="over" class="w-25" [opened]="sidenavService.isOpened()">
+<mat-sidenav-container (backdropClick)="toggleSidenav()">
+  <mat-sidenav #sidenav mode="over" class="w-25"
+    [opened]="sidenavService.isOpened() | async">
     <app-sidenav></app-sidenav>
   </mat-sidenav>
 

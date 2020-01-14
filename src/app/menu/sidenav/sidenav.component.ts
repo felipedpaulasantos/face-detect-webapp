@@ -12,10 +12,6 @@ export class SidenavComponent implements OnInit {
     protected sidenavService: SidenavService
   ) { }
 
-  isOpened = true;
-
-  ngOnInit() {
-    this.isOpened = this.sidenavService.isOpened();
-  }
+  ngOnInit() {}
 
 }

@@ -13,4 +13,8 @@ export class AppComponent {
   constructor(
     protected sidenavService: SidenavService
   ) {}
+
+  toggleSidenav() {
+    this.sidenavService.toggle();
+  }
 }
