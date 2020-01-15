@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar #toolbar color="primary">
   <button mat-icon-button (click)="toggleSidenav()">
     <mat-icon>{{ (isSidenavOpened | async) ? 'menu_open' : 'menu' }}</mat-icon>
   </button>
