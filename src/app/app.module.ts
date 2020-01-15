@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './shared/interceptors/loader-interceptor';
 import { CustomSnackBarComponent } from './shared/components/custom-snack-bar/custom-snack-bar.component';
 import { MenuModule } from './menu/menu.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MenuModule } from './menu/menu.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    HomeModule,
     PhotosModule,
     FaceDetectServicesModule,
     SharedComponentsModule,
