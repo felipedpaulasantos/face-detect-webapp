@@ -12,6 +12,7 @@ import { SharedComponentsModule } from '../shared/components/shared-components.m
 import { NgxSpinnerModule } from 'ngx-spinner'
 import { CompareComponent } from './compare/compare.component';
 import { CompareResultComponent } from './compare/compare-result/compare-result.component';
+import { FaceDetectRoutingModule } from './face-detect-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CompareResultComponent } from './compare/compare-result/compare-result.
   imports: [
     CommonModule,
     PhotosModule,
+    FaceDetectRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
     MaterialFileInputModule,
