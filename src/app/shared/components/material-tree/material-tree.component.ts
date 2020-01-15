@@ -28,7 +28,7 @@ export class MaterialTreeComponent implements OnChanges {
 
   @ViewChild('tree', { static: false }) tree;
 
-  @Input() treeData;
+  @Input() treeData: AttributesNode[];
   isTreeExpanded = false;
   treeControl = new NestedTreeControl<AttributesNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<AttributesNode>();

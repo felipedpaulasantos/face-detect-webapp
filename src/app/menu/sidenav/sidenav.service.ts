@@ -10,12 +10,20 @@ export class SidenavService {
 
   private opened = new BehaviorSubject<boolean>(false);
 
+  isOpened() {
+    return this.opened.asObservable();
+  }
+
   toggle() {
     this.opened.next(!this.opened.value);
   }
 
-  isOpened() {
-    return this.opened.asObservable();
+  close() {
+    this.opened.next(false);
+  }
+
+  open() {
+    this.opened.next(true);
   }
 
 }

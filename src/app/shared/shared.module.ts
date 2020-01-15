@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedComponentsModule } from './components/shared-components.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
-NgModule({
+@NgModule({
   declarations: [],
   providers: [
     NgxSpinnerModule
@@ -13,5 +13,5 @@ NgModule({
   exports: [
     SharedComponentsModule
   ]
-});
+})
 export class SharedModule {}

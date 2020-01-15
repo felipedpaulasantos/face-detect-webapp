@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SidenavService } from './sidenav.service';
+import { Router, NavigationEnd } from '@angular/router';
+import { NavItem } from 'src/app/shared/components/navigation-item/navigation-item';
 
 @Component({
   selector: 'app-sidenav',
@@ -8,10 +10,49 @@ import { SidenavService } from './sidenav.service';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor(
-    protected sidenavService: SidenavService
-  ) { }
+  menuItems = [
+    {
+      displayName: 'Home',
+      iconName: 'home',
+      route: '/home'
+    },
+    {
+      displayName: 'Serviços',
+      iconName: 'face',
+      children: [
+        {
+          displayName: 'Detectar',
+          children: [
+            {
+              displayName: 'Teste1',
+              route: '/home'
+            },
+            {
+              displayName: 'Teste2',
+              route: '/detectar'
+            }
+          ]
+        },
+        {
+          displayName: 'Comparar',
+          route: '/comparar'
+        }
+      ]
+    }
+  ];
 
-  ngOnInit() {}
+  constructor(
+    protected sidenavService: SidenavService,
+    protected router: Router
+  ) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) this.sidenavService.close();
+    });
+  }
+
+  ngOnInit() {
+  }
+
+
 
 }

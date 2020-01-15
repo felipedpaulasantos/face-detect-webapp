@@ -6,21 +6,26 @@ import { NgxSpinnerDefaultComponent } from './ngx-spinner-default/ngx-spinner-de
 import { CustomSnackBarComponent } from './custom-snack-bar/custom-snack-bar.component';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { MaterialTreeComponent } from './material-tree/material-tree.component';
+import { NavigationItemComponent } from './navigation-item/navigation-item.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     NgxSpinnerDefaultComponent,
     CustomSnackBarComponent,
-    MaterialTreeComponent
+    MaterialTreeComponent,
+    NavigationItemComponent
   ],
   imports: [
     CommonModule,
     NgxSpinnerModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule
   ],
   exports: [
     NgxSpinnerDefaultComponent,
-    MaterialTreeComponent
+    MaterialTreeComponent,
+    NavigationItemComponent
   ]
 })
 export class SharedComponentsModule { }

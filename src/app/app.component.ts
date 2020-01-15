@@ -1,6 +1,5 @@
-import { Component, ViewChild, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { SidenavService } from './menu/sidenav/sidenav.service';
-import { MatToolbar } from '@angular/material';
 
 @Component({
   selector: 'app-root',
