@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, HostListener } from '@angular/core';
 import { SidenavService } from './menu/sidenav/sidenav.service';
+import { MatToolbar } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,22 @@ import { SidenavService } from './menu/sidenav/sidenav.service';
 })
 export class AppComponent {
 
-  title = 'face-detect-webapp';
+  bodyHeight: number;
 
   constructor(
     protected sidenavService: SidenavService
-  ) {}
+  ){
+    this.setBodyHeight();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.setBodyHeight();
+  }
+
+  setBodyHeight() {
+    this.bodyHeight = window.innerHeight - 64;
+  }
 
   toggleSidenav() {
     this.sidenavService.toggle();

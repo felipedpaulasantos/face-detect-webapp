@@ -2,7 +2,7 @@
 
 <app-toolbar></app-toolbar>
 
-<mat-sidenav-container (backdropClick)="toggleSidenav()">
+<mat-sidenav-container [style.height.px]="bodyHeight" (backdropClick)="toggleSidenav()">
   <mat-sidenav #sidenav mode="over" class="w-25"
     [opened]="sidenavService.isOpened() | async">
     <app-sidenav></app-sidenav>
@@ -14,3 +14,4 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
