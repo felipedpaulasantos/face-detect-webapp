@@ -3,15 +3,16 @@
 <app-toolbar></app-toolbar>
 
 <mat-sidenav-container [style.height.px]="bodyHeight" (backdropClick)="toggleSidenav()">
-  <mat-sidenav #sidenav mode="over" class="w-25"
-    [opened]="sidenavService.isOpened() | async">
+  <mat-sidenav #sidenav fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'over'"
+    [opened]="(sidenavService.isOpened() | async)">
     <app-sidenav></app-sidenav>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div class="bg-light">
+    <div class="bg-light p-2">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

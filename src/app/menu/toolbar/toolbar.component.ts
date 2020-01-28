@@ -8,24 +8,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
 
   constructor(
     protected sidenavService: SidenavService
   ) { }
 
-  isSidenavOpened = new Observable<boolean>();
-
-  ngOnInit() {
-    this.isSidenavOpened = this.sidenavService.isOpened();
-   }
-
   toggleSidenav() {
     this.sidenavService.toggle();
-  }
-
-  isSidenavOpen() {
-    return this.sidenavService.isOpened();
   }
 
 }

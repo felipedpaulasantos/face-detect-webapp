@@ -16,6 +16,7 @@ import { LoaderInterceptor } from './shared/interceptors/loader-interceptor';
 import { CustomSnackBarComponent } from './shared/components/custom-snack-bar/custom-snack-bar.component';
 import { MenuModule } from './menu/menu.module';
 import { HomeModule } from './home/home.module';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HomeModule } from './home/home.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    OAuthModule.forRoot(),
     MaterialModule,
     HomeModule,
     PhotosModule,
