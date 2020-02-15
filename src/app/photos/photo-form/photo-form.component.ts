@@ -66,12 +66,7 @@ export class PhotoFormComponent implements OnInit {
     this.photoService.setShowRectangle(event.checked);
   }
 
-<<<<<<< HEAD
-  clearImage(event: any) {
-
-=======
   clearImage() {
->>>>>>> 65160caf0762f426c24be45aad1a9464bfec01e7
     this.imageForm.get('arquivoImagem').setValue(null);
     this.photoService.reset();
     this.photoFile = null;

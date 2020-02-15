@@ -91,7 +91,7 @@ export class DetectComponent implements OnInit {
               this.snackBar.openSnackBar('Atributos atualizados', '', 'Success');
             },
             (errorResponse) => {
-              this.snackBar.openSnackBar(errorResponse.error.error.message, '', 'Warn');
+              this.snackBar.openSnackBar(errorResponse.message, '', 'Warn');
             });
         } else {
           this.photoService.setDetectionAttributes(detectionAttr);
@@ -101,7 +101,7 @@ export class DetectComponent implements OnInit {
       },
       (err) => {
         console.error(err);
-        this.snackBar.openSnackBar(`${err.error.error.message}`, '', 'Error');
+        this.snackBar.openSnackBar(`${err.message}`, '', 'Error');
       });
   }
 
