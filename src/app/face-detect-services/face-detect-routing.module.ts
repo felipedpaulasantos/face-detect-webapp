@@ -13,14 +13,16 @@ const routes: Routes = [
     path: 'detectar',
     component: DetectComponent,
     data: {
-      title: 'Detectar'
+      title: 'Detectar',
+      animation: 'Detectar'
     }
   },
   {
     path: 'comparar',
     component: CompareComponent,
     data: {
-      title: 'Comparar'
+      title: 'Comparar',
+      animation: 'Comparar'
     }
   },
 ];

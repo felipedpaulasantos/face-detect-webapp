@@ -3,16 +3,16 @@
 <app-toolbar></app-toolbar>
 
 <mat-sidenav-container [style.height.px]="bodyHeight" (backdropClick)="toggleSidenav()">
-  <mat-sidenav #sidenav fixedInViewport
+  <mat-sidenav #sidenav
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'over'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(sidenavService.isOpened() | async)">
     <app-sidenav></app-sidenav>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div class="bg-light p-2">
-      <router-outlet></router-outlet>
+    <div [@routeAnimations]="prepareRoute(outlet)" class="bg-light p-4">
+      <router-outlet #outlet="outlet"></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,14 +1,18 @@
 import { Component, HostListener } from '@angular/core';
-import { SidenavService } from './menu/sidenav/sidenav.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { RouterOutlet } from '@angular/router';
+
 import { AuthenticationService } from './authentication/authentication.service';
+import { fadeRouteAnimation } from './shared/animations/simple-fade.animation';
+import { SidenavService } from './menu/sidenav/sidenav.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [fadeRouteAnimation]
 })
 export class AppComponent {
 
@@ -40,5 +44,9 @@ export class AppComponent {
 
   toggleSidenav() {
     this.sidenavService.toggle();
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

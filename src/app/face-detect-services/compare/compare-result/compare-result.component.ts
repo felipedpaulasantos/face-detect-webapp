@@ -8,20 +8,7 @@ import { simpleFadeAnimation } from 'src/app/shared/animations/simple-fade.anima
 @Component({
   selector: 'app-compare-result',
   templateUrl: './compare-result.component.html',
-  styleUrls: ['./compare-result.component.scss'],
-  animations: [
-    trigger('simpleFadeAnimation', [
-      state('in', style({opacity: 1})),
-      transition(':enter', [
-        useAnimation(simpleFadeAnimation, {
-          params: {
-            opacity: 0,
-            time: '0.5s'
-          }
-        })
-      ])
-    ])
-  ]
+  styleUrls: ['./compare-result.component.scss']
 })
 export class CompareResultComponent implements OnInit {
 
