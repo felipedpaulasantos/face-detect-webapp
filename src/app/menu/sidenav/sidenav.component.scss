@@ -1,0 +1,26 @@
+.sidenavMenuItem {
+  border-left: solid transparent;
+}
+
+.sidenavMenuItem:has(.active) {
+  border-left: solid #FC8F01;
+}
+
+.sidenavMenuItem.active {
+  border-left: solid #FC8F01;
+}
+
+@media (max-width: 767px) {
+  .img-logo {
+      width: 80px;
+      height: 56px;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .img-logo {
+      width: 100px;
+      height: 70px;
+  }
+}

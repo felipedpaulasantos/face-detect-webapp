@@ -34,5 +34,48 @@ mat-form-field { width: 100% !important; }
 
 .mat-tab-body-wrapper { height: 100%; }
 
+mat-sidenav {
+  max-width: 70% !important;
+}
+
+@include media-breakpoint-up(md) {
+  mat-sidenav {
+    max-width: 50% !important;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  mat-sidenav {
+    max-width: 30% !important;
+  }
+}
+
+ @include media-breakpoint-up(xl) {
+  mat-sidenav {
+    max-width: 20% !important;
+  }
+ }
+
 .h-85 { height: 85%; }
 .h-90 { height: 90%; }
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.opac-8 {
+  opacity: 0.8;
+}
+
+.opac-5 {
+  opacity: 0.5;
+}
+
+.opac-3 {
+  opacity: 0.3;
+}
+
+.p-fixed {
+  position: fixed !important;
+}
+

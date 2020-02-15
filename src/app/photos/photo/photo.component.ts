@@ -1,28 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, QueryList } from '@angular/core';
 import { PhotoService } from '../photo.service';
 import { Observable } from 'rxjs';
-import { trigger, state, style, transition, useAnimation } from '@angular/animations';
-import { simpleFadeAnimation } from '../../shared/animations/simple-fade.animation';
+import { simpleFadeAnimation, simpleFadeTrigger } from '../../shared/animations/simple-fade.animation';
 import { FaceRectangle, DetectionAttributes } from 'src/app/face-detect-services/detect/detection-attributes/detection-attributes';
 
 @Component({
   selector: 'app-photo',
   templateUrl: './photo.component.html',
   styleUrls: ['./photo.component.scss'],
-  animations: [
-    // the fade-in/fade-out animation.
-    trigger('simpleFadeAnimation', [
-      state('in', style({opacity: 1})),
-      transition(':enter', [
-        useAnimation(simpleFadeAnimation, {
-          params: {
-            opacity: 0,
-            time: '0.5s'
-          }
-        })
-      ])
-    ])
-  ]
+  animations: [simpleFadeTrigger]
 })
 export class PhotoComponent implements OnInit {
 

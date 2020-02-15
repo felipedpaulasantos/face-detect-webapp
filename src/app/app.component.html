@@ -4,8 +4,9 @@
 
 <mat-sidenav-container [style.height.px]="bodyHeight" (backdropClick)="toggleSidenav()">
   <mat-sidenav #sidenav
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [ngClass]="{'p-fixed': (sidenavService.viewMode | async) == 'over'}"
+    [attr.role]="(sidenavService.role | async)"
+    [mode]="(sidenavService.viewMode | async)"
     [opened]="(sidenavService.isOpened() | async)">
     <app-sidenav></app-sidenav>
   </mat-sidenav>

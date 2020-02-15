@@ -1,19 +1,27 @@
 <div class="p-3">
 
+  <div *ngIf="(sidenavService.viewMode | async) == 'over'">
+    <span  class="my-4 navbar-brand d-flex align-items-center mx-3">
+      <img src="assets/images/caixa-logo-x.png" class="img-fluid img-logo rounded mx-auto">
+    </span>
+    <h4 class="text-center text-secondary text-uppercase">Nome do sistema</h4>
+    <hr class="border-secondary opac-3 my-3">
+  </div>
+
   <span *ngFor="let item of menuItems">
     <!-- Handle branch node buttons here -->
     <span *ngIf="item.children && item.children.length > 0">
-      <button class="w-100" mat-menu-item [matMenuTriggerFor]="menu.childMenu"
+      <button class="w-100 sidenavMenuItem" mat-menu-item [matMenuTriggerFor]="menu.childMenu"
       [disabled]="item.disabled">
         <mat-icon>{{ item.iconName }}</mat-icon>
-        {{item.displayName}}
+        {{item.displayName}} aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         <mat-icon>arrow_right</mat-icon>
       </button>
       <app-navigation-item #menu [items]="item.children"></app-navigation-item>
     </span>
     <!-- Leaf node buttons here -->
     <span *ngIf="!item.children || item.children.length === 0">
-      <button class="w-100" mat-menu-item [routerLink]="item.route">
+      <button class="w-100 sidenavMenuItem" mat-menu-item [routerLink]="item.route" routerLinkActive="active">
         <mat-icon>{{ item.iconName }}</mat-icon>
         {{item.displayName}}
       </button>
