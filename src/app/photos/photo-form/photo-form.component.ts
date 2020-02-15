@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CustomSnackBarService } from 'src/app/shared/components/custom-snack-bar/custom-snack-bar.service';
 import { PhotoService } from '../photo.service';
 import { FaceRectangle } from 'src/app/face-detect-services/detect/detection-attributes/detection-attributes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-photo-form',
@@ -16,8 +17,13 @@ export class PhotoFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private snackBar: CustomSnackBarService,
-    private photoService: PhotoService
-  ) {}
+    private photoService: PhotoService,
+    private router: Router
+  ) {
+    this.router.events.subscribe(event => {
+      this.clearImage();
+    });
+  }
 
   photoSrc: string = null;
   photoElement$ = new Observable<HTMLImageElement>(null);
@@ -39,7 +45,6 @@ export class PhotoFormComponent implements OnInit {
   }
 
   processFile(imageInput: any) {
-
     if (!imageInput || !imageInput.target || !imageInput.target.files[0]) {
       this.snackBar.openSnackBar('Arquivo inexistente ou inválido', '', 'Warn');
       return;
@@ -61,8 +66,12 @@ export class PhotoFormComponent implements OnInit {
     this.photoService.setShowRectangle(event.checked);
   }
 
+<<<<<<< HEAD
   clearImage(event: any) {
 
+=======
+  clearImage() {
+>>>>>>> 65160caf0762f426c24be45aad1a9464bfec01e7
     this.imageForm.get('arquivoImagem').setValue(null);
     this.photoService.reset();
     this.photoFile = null;

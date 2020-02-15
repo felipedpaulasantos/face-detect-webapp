@@ -1,4 +1,18 @@
 <app-ngx-spinner-default></app-ngx-spinner-default>
-<div class="h-100 bg-light">
-  <router-outlet></router-outlet>
-</div>
+
+<app-toolbar></app-toolbar>
+
+<mat-sidenav-container [style.height.px]="bodyHeight" (backdropClick)="toggleSidenav()">
+  <mat-sidenav #sidenav fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'over'"
+    [opened]="(sidenavService.isOpened() | async)">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="bg-light p-2">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,23 @@
+<div class="p-3">
+
+  <span *ngFor="let item of menuItems">
+    <!-- Handle branch node buttons here -->
+    <span *ngIf="item.children && item.children.length > 0">
+      <button class="w-100" mat-menu-item [matMenuTriggerFor]="menu.childMenu"
+      [disabled]="item.disabled">
+        <mat-icon>{{ item.iconName }}</mat-icon>
+        {{item.displayName}}
+        <mat-icon>arrow_right</mat-icon>
+      </button>
+      <app-navigation-item #menu [items]="item.children"></app-navigation-item>
+    </span>
+    <!-- Leaf node buttons here -->
+    <span *ngIf="!item.children || item.children.length === 0">
+      <button class="w-100" mat-menu-item [routerLink]="item.route">
+        <mat-icon>{{ item.iconName }}</mat-icon>
+        {{item.displayName}}
+      </button>
+    </span>
+  </span>
+
+</div>

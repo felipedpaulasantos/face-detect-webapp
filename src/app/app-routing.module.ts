@@ -1,34 +1,35 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DetectComponent } from './face-detect-services/detect/detect.component';
-import { CompareComponent } from './face-detect-services/compare/compare.component';
-
+import { HomeComponent } from './home/home/home.component';
 
 const routes: Routes = [
   {
-    path: 'detectar',
-    component: DetectComponent,
-    data: {
-      title: 'Detectar'
-    }
-  },
-  {
-    path: 'comparar',
-    component: CompareComponent,
-    data: {
-      title: 'Comparar'
-    }
-  },
-  {
     path: '',
-    redirectTo: '/detectar',
+    redirectTo: '/home',
     pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    data: {
+      title: 'Home'
+    }
+  },
+  {
+    path: 'servicos',
+    loadChildren: './face-detect-services/face-detect-services.module#FaceDetectServicesModule'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+      useHash: false,
+      initialNavigation: true
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

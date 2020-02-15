@@ -17,6 +17,7 @@ export class CompareComponent implements OnInit {
   ) { }
 
   innerHeight: number;
+  heightProportion = 0.85;
   private resultSource = new BehaviorSubject<CompareResult>(null);
   result$ = this.resultSource.asObservable();
 
@@ -30,7 +31,7 @@ export class CompareComponent implements OnInit {
   }
 
   setTabGroupMaxHeight() {
-    this.innerHeight = window.innerHeight * 0.85;
+    this.innerHeight = window.innerHeight * this.heightProportion;
   }
 
   receiveImageFile(file: File) {
