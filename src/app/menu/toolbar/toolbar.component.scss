@@ -1,0 +1,35 @@
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+  .img-logo {
+      width: 30px;
+      height: 24px;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .img-logo {
+      width: 35px;
+      height: 27px;
+  }
+}
+
+/* tablets/desktops and up ----------- */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .img-logo {
+      width: 35px;
+      height: 27px;
+  }
+}
+
+/* large desktops and up ----------- */
+@media screen and (min-width: 1200px) {
+  .img-logo {
+      width: 45px;
+      height: 33px;
+  }
+}
+
+.gradient-toolbar {
+  background-image: url('/assets/images/bg_header.png');
+}
