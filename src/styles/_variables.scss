@@ -4,7 +4,35 @@ $link-hover-decoration: none;
 $label-margin-bottom: 0;
 
 $theme-colors: (
-  "primary": #0065BB,
-  "warning": #FC8F01,
-  "info": #009FB3
+  "primary": #005CA9,
+  "primary-light": #0071CF,
+  "primary-dark": #004C8C,
+
+  "secondary": #F39200,
+  "secondary-light": #FEB21E,
+  "secondary-dark": #EC7500,
+
+  "success": #AFCA0B,
+  "success-light": #C2DC26,
+  "success-dark": #A1B911,
+
+  "danger": #F9765E,
+  "danger-light": #FC8A76,
+  "danger-dark": #E26650,
+
+  "info": #00B5E5,
+  "info-light": #32D4FF,
+  "info-dark": #00A2CD,
+
+  "warning": #F9B000,
+  "warning-light": #FFC230,
+  "warning-dark": #F99E00,
+
+  "apoio": #66CFBF,
+  "apoio-light": #66CFBF,
+  "apoio-dark": #66CFBF,
+
+  "aux": #BC8DAC,
+  "aux-light": #B26F9B,
+  "aux-dark": #9F4D83,
 );

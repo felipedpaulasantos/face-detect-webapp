@@ -1,0 +1,186 @@
+$mat-caixa-primary: (
+    50 : #e0ebf5,
+    100 : #b3cee5,
+    200 : #80aed4,
+    300 : #4d8dc3,
+    400 : #2674b6,
+    500 : #005ca9,
+    600 : #0054a2,
+    700 : #004a98,
+    800 : #00418f,
+    900 : #00307e,
+    A100 : #acc4ff,
+    A200 : #79a0ff,
+    A400 : #467cff,
+    A700 : #2c6aff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$mat-caixa-accent: (
+    50 : #fef2e0,
+    100 : #fbdeb3,
+    200 : #f9c980,
+    300 : #f7b34d,
+    400 : #f5a226,
+    500 : #f39200,
+    600 : #f18a00,
+    700 : #ef7f00,
+    800 : #ed7500,
+    900 : #ea6300,
+    A100 : #ffffff,
+    A200 : #ffeade,
+    A400 : #ffc9ab,
+    A700 : #ffb991,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #FFFFFF,
+        600 : #000000,
+        700 : #000000,
+        800 : #FFFFFF,
+        900 : #FFFFFF,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mat-caixa-warn: (
+    50 : #feefec,
+    100 : #fdd6cf,
+    200 : #fcbbaf,
+    300 : #fb9f8e,
+    400 : #fa8b76,
+    500 : #f9765e,
+    600 : #f86e56,
+    700 : #f7634c,
+    800 : #f65942,
+    900 : #f54631,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffd6d2,
+    A700 : #ffbfb8,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #FFFFFF,
+        600 : #000000,
+        700 : #000000,
+        800 : #FFFFFF,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mat-caixa-azul: (
+  light : #0071CF,
+  standard : #005CA9,
+  dark : #004C8C,
+  contrast: (
+    light : #47576B,
+    standard : #FFFFFF,
+    dark : #FFFFFF
+  )
+);
+
+$mat-caixa-secondary: (
+  light : #FEB21E,
+  standard : #F39200,
+  dark : #EC7500,
+  contrast: (
+    light : #47576B,
+    standard : #FFFFFF,
+    dark : #FFFFFF
+  )
+);
+
+$mat-caixa-success: (
+  light : #C2DC26,
+  standard : #AFCA0B,
+  dark : #A1B911,
+  contrast: (
+    light : #47576B,
+    standard : #FFFFFF,
+    dark : #FFFFFF
+  )
+);
+
+$mat-caixa-danger: (
+  light : #FC8A76,
+  standard : #F9765E,
+  dark : #E26650,
+  contrast: (
+    light : #47576B,
+    standard : #FFFFFF,
+    dark : #FFFFFF
+  )
+);
+
+$mat-caixa-info: (
+  light : #32D4FF,
+  standard : #00B5E5,
+  dark : #00A2CD,
+  contrast: (
+    light : #47576B,
+    standard : #FFFFFF,
+    dark : #FFFFFF
+  )
+);
+
+$mat-caixa-warning: (
+  light : #FFC230,
+  standard : #F9B000,
+  dark : #F99E00,
+  contrast: (
+    light : #47576B,
+    standard : #FFFFFF,
+    dark : #FFFFFF
+  )
+);
+
+$mat-caixa-apoio: (
+  light : #66CFBF,
+  standard : #54BBAB,
+  dark : #40A797,
+  contrast: (
+    light : #47576B,
+    standard : #FFFFFF,
+    dark : #FFFFFF
+  )
+);
+
+$mat-caixa-aux: (
+  light : #BC8DAC,
+  standard : #B26F9B,
+  dark : #9F4D83,
+  contrast: (
+    light : #47576B,
+    standard : #FFFFFF,
+    dark : #FFFFFF
+  )
+);

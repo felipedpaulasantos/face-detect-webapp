@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-<mat-toolbar #toolbar color="primary" class="gradient-toolbar">
+<mat-toolbar #toolbar color="primary" class="gradient-bg-sky mat-elevation-z4 fixed-top">
   <button mat-icon-button (click)="toggleSidenav()">
     <mat-icon>{{ (sidenavService.isOpened() | async) ? 'menu_open' : 'menu' }}</mat-icon>
   </button>
   <span class="navbar-brand d-flex align-items-center mx-3">
     <img src="assets/images/caixa-logo-x-branco.png" class="img-fluid img-logo rounded mr-2">
   </span>
-=======
-<mat-toolbar #toolbar color="primary">
-  <button mat-icon-button (click)="toggleSidenav()">
-    <mat-icon>{{ (sidenavService.isOpened() | async) ? 'menu_open' : 'menu' }}</mat-icon>
-  </button>
->>>>>>> 65160caf0762f426c24be45aad1a9464bfec01e7
   <span>Face Detect</span>
 </mat-toolbar>

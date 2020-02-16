@@ -3,20 +3,237 @@
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/buttons";
 @import "../node_modules/bootstrap/scss/grid";
 @import "../node_modules/bootstrap/scss/utilities";
+@import "./styles/custom-colors";
 @import "./styles/reset";
 
 @import '~@angular/material/theming';
 
 @include mat-core();
 
-$face-detect-webapp-primary: mat-palette($mat-blue, 700, 100, 500);
-$face-detect-webapp-accent: mat-palette($mat-orange, 800, 200, 400);
+$custom-collection: (
+  warning :  #F9B000,
+  success :  #AFCA0B,
+  danger:    #F9765E,
+  contrast: (
+      warning :  #000000,
+      success :  #FFFFFF,
+      danger:    #FFFFFF,
+  )
+);
 
-$face-detect-webapp-warn: mat-palette($mat-red);
+$my-app-custom: mat-palette($custom-collection, custom);
+
+$face-detect-webapp-primary: mat-palette($mat-caixa-primary, 500, 900, 800);
+$face-detect-webapp-accent: mat-palette($mat-caixa-accent, 500, 900, 800);
+$face-detect-webapp-warn: mat-palette($mat-caixa-warn, 500, 900, 800);
 
 $face-detect-webapp-theme: mat-light-theme($face-detect-webapp-primary, $face-detect-webapp-accent, $face-detect-webapp-warn);
+$face-detect-webapp-theme: map_merge($face-detect-webapp-theme, (custom: $my-app-custom));
+
+$custom: map-get($face-detect-webapp-theme, custom);
+
+.mat-azul {
+  background-color: mat-color($mat-caixa-azul, standard) !important;
+  color: white !important;
+}
+.mat-azul-light {
+  background-color: mat-color($mat-caixa-azul, light) !important;
+  color: #FFFFFF !important
+}
+.mat-azul-dark {
+  background-color: mat-color($mat-caixa-azul, dark) !important;
+  color: #FFFFFF !important
+}
+.mat-stroked-button.mat-azul {
+  background-color: white !important;
+  color: mat-color($mat-caixa-azul, standard) !important;
+}
+.mat-stroked-button.mat-azul-light {
+  background-color: white !important;
+  color: mat-color($mat-caixa-azul, light) !important;
+}
+.mat-stroked-button.mat-azul-dark {
+  background-color: white !important;
+  color: mat-color($mat-caixa-azul, dark) !important;
+}
+
+.mat-secondary {
+  background-color: mat-color($mat-caixa-secondary, standard) !important;
+  color: white !important;
+}
+.mat-secondary-light {
+  background-color: mat-color($mat-caixa-secondary, light) !important;
+  color: #47576B !important
+}
+.mat-secondary-dark {
+  background-color: mat-color($mat-caixa-secondary, dark) !important;
+  color: white !important
+}
+.mat-stroked-button.mat-secondary {
+  background-color: white !important;
+  color: mat-color($mat-caixa-secondary, standard) !important;
+}
+.mat-stroked-button.mat-secondary-light {
+  background-color: white !important;
+  color: mat-color($mat-caixa-secondary, light) !important;
+}
+.mat-stroked-button.mat-secondary-dark {
+  background-color: white !important;
+  color: mat-color($mat-caixa-secondary, dark) !important;
+}
+
+.mat-success {
+  background-color: mat-color($mat-caixa-success, standard) !important;
+  color: white !important;
+}
+.mat-success-light {
+  background-color: mat-color($mat-caixa-success, light) !important;
+  color: #47576B !important
+}
+.mat-success-dark {
+  background-color: mat-color($mat-caixa-success, dark) !important;
+  color: white !important
+}
+.mat-stroked-button.mat-success {
+  background-color: white !important;
+  color: mat-color($mat-caixa-success, standard) !important;
+}
+.mat-stroked-button.mat-success-light {
+  background-color: white !important;
+  color: mat-color($mat-caixa-success, light) !important;
+}
+.mat-stroked-button.mat-success-dark {
+  background-color: white !important;
+  color: mat-color($mat-caixa-success, dark) !important;
+}
+
+.mat-danger {
+  background-color: mat-color($mat-caixa-danger, standard) !important;
+  color: white !important;
+}
+.mat-danger-light {
+  background-color: mat-color($mat-caixa-danger, light) !important;
+  color: #47576B !important
+}
+.mat-danger-dark {
+  background-color: mat-color($mat-caixa-danger, dark) !important;
+  color: white !important
+}
+.mat-stroked-button.mat-danger {
+  background-color: white !important;
+  color: mat-color($mat-caixa-danger, standard) !important;
+}
+.mat-stroked-button.mat-danger-light {
+  background-color: white !important;
+  color: mat-color($mat-caixa-danger, light) !important;
+}
+.mat-stroked-button.mat-danger-dark {
+  background-color: white !important;
+  color: mat-color($mat-caixa-danger, dark) !important;
+}
+
+.mat-info {
+  background-color: mat-color($mat-caixa-info, standard) !important;
+  color: #FFFFFF !important;
+}
+.mat-info-light {
+  background-color: mat-color($mat-caixa-info, light) !important;
+  color: #47576B !important
+}
+.mat-info-dark {
+  background-color: mat-color($mat-caixa-info, dark) !important;
+  color: white !important
+}
+.mat-stroked-button.mat-info {
+  background-color: white !important;
+  color: mat-color($mat-caixa-info, standard) !important;
+}
+.mat-stroked-button.mat-info-light {
+  background-color: white !important;
+  color: mat-color($mat-caixa-info, light) !important;
+}
+.mat-stroked-button.mat-info-dark {
+  background-color: white !important;
+  color: mat-color($mat-caixa-info, dark) !important;
+}
+
+.mat-warning {
+  background-color: mat-color($mat-caixa-warning, standard) !important;
+  color: #47576B !important;
+}
+.mat-warning-light {
+  background-color: mat-color($mat-caixa-warning, light) !important;
+  color: #47576B !important
+}
+.mat-warning-dark {
+  background-color: mat-color($mat-caixa-warning, dark) !important;
+  color: white !important
+}
+.mat-stroked-button.mat-warning {
+  background-color: white !important;
+  color: mat-color($mat-caixa-warning, standard) !important;
+}
+.mat-stroked-button.mat-warning-light {
+  background-color: white !important;
+  color: mat-color($mat-caixa-warning, light) !important;
+}
+.mat-stroked-button.mat-warning-dark {
+  background-color: white !important;
+  color: mat-color($mat-caixa-warning, dark) !important;
+}
+
+.mat-apoio {
+  background-color: mat-color($mat-caixa-apoio, standard) !important;
+  color: white !important;
+}
+.mat-apoio-light {
+  background-color: mat-color($mat-caixa-apoio, light) !important;
+  color: #47576B !important
+}
+.mat-apoio-dark {
+  background-color: mat-color($mat-caixa-apoio, dark) !important;
+  color: white !important
+}
+.mat-stroked-button.mat-apoio {
+  background-color: white !important;
+  color: mat-color($mat-caixa-apoio, standard) !important;
+}
+.mat-stroked-button.mat-apoio-light {
+  background-color: white !important;
+  color: mat-color($mat-caixa-apoio, light) !important;
+}
+.mat-stroked-button.mat-apoio-dark {
+  background-color: white !important;
+  color: mat-color($mat-caixa-apoio, dark) !important;
+}
+
+.mat-aux {
+  background-color: mat-color($mat-caixa-aux, standard) !important;
+  color: white !important;
+}
+.mat-aux-light {
+  background-color: mat-color($mat-caixa-aux, light) !important;
+  color: white !important
+}
+.mat-aux-dark {
+  background-color: mat-color($mat-caixa-aux, dark) !important;
+  color: white !important
+}
+.mat-stroked-button.mat-aux {
+  background-color: white !important;
+  color: mat-color($mat-caixa-aux, standard) !important;
+}
+.mat-stroked-button.mat-aux-light {
+  background-color: white !important;
+  color: mat-color($mat-caixa-aux, light) !important;
+}
+.mat-stroked-button.mat-aux-dark {
+  background-color: white !important;
+  color: mat-color($mat-caixa-aux, dark) !important;
+}
 
 @include angular-material-theme($face-detect-webapp-theme);
 
@@ -63,19 +280,42 @@ mat-sidenav {
   margin-bottom: 1rem;
 }
 
-.opac-8 {
-  opacity: 0.8;
+.color-opac-1 {
+  opacity: 0.64;
+}
+.color-opac-2 {
+  opacity: 0.4;
+}
+.color-opac-3 {
+  opacity: 0.24;
 }
 
-.opac-5 {
-  opacity: 0.5;
+.text-opac-1 {
+  opacity: 0.72;
 }
-
-.opac-3 {
-  opacity: 0.3;
+.text-opac-2 {
+  opacity: 0.56;
+}
+.text-opac-3 {
+  opacity: 0.32;
 }
 
 .p-fixed {
   position: fixed !important;
 }
 
+.gradient-bg-primary {
+  background: linear-gradient(130deg, rgba(0,92,169,1) 0%, rgba(84,187,171,1) 100%) !important;
+}
+.gradient-bg-sky {
+  background: linear-gradient(130deg, rgba(0,92,169,1) 0%, rgba(0,181,229,1) 100%) !important;
+}
+.gradient-bg-aux {
+  background: linear-gradient(130deg, rgba(0,92,169,1) 0%, rgba(178,111,155,1) 100%) !important;
+}
+.gradient-bg-success {
+  background: linear-gradient(130deg, rgba(0,92,169,1) 0%, rgba(175,202,11,1) 100%) !important;
+}
+.gradient-bg-light {
+  background: linear-gradient(130deg, rgba(239,245,246,1) 0%, rgba(255,255,255,1) 100%) !important;
+}
