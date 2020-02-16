@@ -1,0 +1,8 @@
+.mat-menu-item {
+  border-left: solid transparent;
+  // padding-left: 1rem !important;
+}
+
+.mat-menu-item.active {
+  border-left: solid #FC8F01;
+}

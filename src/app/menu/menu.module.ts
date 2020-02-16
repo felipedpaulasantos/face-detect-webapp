@@ -7,12 +7,14 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SharedModule } from '../shared/shared.module';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { MenuListItemComponent } from './sidenav/menu-list-item/menu-list-item.component';
 
 @NgModule({
   declarations: [
     SidenavComponent,
     ToolbarComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    MenuListItemComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
   exports: [
     ToolbarComponent,
     SidenavComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    MenuListItemComponent
   ]
 })
 export class MenuModule { }

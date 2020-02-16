@@ -7,10 +7,11 @@
     <hr class="border-primary color-opac-2 my-3">
   </div>
 
+  <h6 class="text-opac-1 mb-3">Menu Flutuante</h6>
   <span *ngFor="let item of menuItems">
     <!-- Handle branch node buttons here -->
     <span *ngIf="item.children && item.children.length > 0">
-      <button class="w-100 sidenavMenuItem" mat-menu-item [matMenuTriggerFor]="menu.childMenu"
+      <button class="w-100 sidenavMenuItem" mat-menu-item [matMenuTriggerFor]="menu.childMenu" [routerLink]="item.route" routerLinkActive="active"
       [disabled]="item.disabled">
         <mat-icon>{{ item.iconName }}</mat-icon>
         {{item.displayName}}
@@ -26,5 +27,12 @@
       </button>
     </span>
   </span>
+
+  <hr class="color-opac-1 my-3">
+
+  <h6 class="text-opac-1 mb-3">Menu em Cascata</h6>
+  <mat-nav-list class="p-0">
+    <app-menu-list-item *ngFor="let item of menuItems" [item]="item"></app-menu-list-item>
+  </mat-nav-list>
 
 </div>

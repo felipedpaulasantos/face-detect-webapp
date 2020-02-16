@@ -17,6 +17,7 @@ import { CustomSnackBarComponent } from './shared/components/custom-snack-bar/cu
 import { MenuModule } from './menu/menu.module';
 import { HomeModule } from './home/home.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { NavService } from './menu/sidenav/menu-list-item/nav.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
   ],
   exports: [],
   providers: [
+    NavService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,

@@ -2,10 +2,6 @@
   border-left: solid transparent;
 }
 
-.sidenavMenuItem:has(.active) {
-  border-left: solid #FC8F01;
-}
-
 .sidenavMenuItem.active {
   border-left: solid #FC8F01;
 }

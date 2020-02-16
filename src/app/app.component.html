@@ -13,8 +13,10 @@
     </mat-sidenav>
 
     <mat-sidenav-content >
-      <section [@routeAnimations]="prepareRoute(outlet)" class="bg-light p-4">
-        <app-breadcrumb></app-breadcrumb>
+      <section [@routeAnimations]="prepareRoute(outlet)" class="bg-light pt-3 pb-4 px-4">
+        <div class="mb-3">
+          <app-breadcrumb></app-breadcrumb>
+        </div>
         <router-outlet #outlet="outlet"></router-outlet>
       </section>
     </mat-sidenav-content>
