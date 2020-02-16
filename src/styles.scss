@@ -1,39 +1,53 @@
-@import "./styles/variables";
+@import "./styles/bootstrap-variables";
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/card";
 @import "../node_modules/bootstrap/scss/grid";
 @import "../node_modules/bootstrap/scss/utilities";
-@import "./styles/custom-colors";
+@import "./styles/material-custom-colors";
 @import "./styles/reset";
 
 @import '~@angular/material/theming';
 
-@include mat-core();
-
-$custom-collection: (
-  warning :  #F9B000,
-  success :  #AFCA0B,
-  danger:    #F9765E,
-  contrast: (
-      warning :  #000000,
-      success :  #FFFFFF,
-      danger:    #FFFFFF,
-  )
+$config: mat-typography-config(
+  $font-family: 'Futura LT Book, Roboto, sans-serif',
+  $input: mat-typography-level(16px, 1.5, 400)
 );
 
-$my-app-custom: mat-palette($custom-collection, custom);
+@include mat-core($config);
 
-$face-detect-webapp-primary: mat-palette($mat-caixa-primary, 500, 900, 800);
+$face-detect-webapp-primary: mat-palette($mat-caixa-primary, 500, 400, 800);
 $face-detect-webapp-accent: mat-palette($mat-caixa-accent, 500, 900, 800);
 $face-detect-webapp-warn: mat-palette($mat-caixa-warn, 500, 900, 800);
 
 $face-detect-webapp-theme: mat-light-theme($face-detect-webapp-primary, $face-detect-webapp-accent, $face-detect-webapp-warn);
-$face-detect-webapp-theme: map_merge($face-detect-webapp-theme, (custom: $my-app-custom));
 
-$custom: map-get($face-detect-webapp-theme, custom);
+@function my-mat-light-theme-foreground($color) {
+  @return (
+      base:              $color,
+      divider:           $black-12-opacity,
+      dividers:          $black-12-opacity,
+      disabled:          rgba($color, 0.38),
+      disabled-button:   rgba($color, 0.38),
+      disabled-text:     rgba($color, 0.38),
+      hint-text:         rgba($color, 0.38),
+      secondary-text:    rgba($color, 0.54),
+      icon:              rgba($color, 0.54),
+      icons:             rgba($color, 0.54),
+      text:              rgba($color, 0.87),
+      slider-off:        rgba($color, 0.26),
+      slider-off-active: rgba($color, 0.38),
+  );
+};
+
+// You can put any color here. I've chosen mat-color($my-app-primary, 700)
+$my-foreground: my-mat-light-theme-foreground(mat-color($mat-caixa-font, main));
+$face-detect-webapp-theme: map-merge($face-detect-webapp-theme, (foreground: $my-foreground));
+@include angular-material-theme($face-detect-webapp-theme);
 
 .mat-azul {
   background-color: mat-color($mat-caixa-azul, standard) !important;
@@ -235,13 +249,15 @@ $custom: map-get($face-detect-webapp-theme, custom);
   color: mat-color($mat-caixa-aux, dark) !important;
 }
 
-@include angular-material-theme($face-detect-webapp-theme);
+
 
 html, body { height: 100%; }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-ul { list-style: none };
+body {
+  color: #47576B;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .padded-list > li { padding-top: 1rem };
 
@@ -252,34 +268,95 @@ mat-form-field { width: 100% !important; }
 .mat-tab-body-wrapper { height: 100%; }
 
 mat-sidenav {
+  min-width: 70% !important;
   max-width: 70% !important;
 }
 
 @include media-breakpoint-up(md) {
   mat-sidenav {
+    min-width: 50% !important;
     max-width: 50% !important;
   }
 }
 
 @include media-breakpoint-up(lg) {
   mat-sidenav {
+    min-width: auto !important;
     max-width: 30% !important;
   }
 }
 
  @include media-breakpoint-up(xl) {
   mat-sidenav {
+    min-width: auto !important;
     max-width: 20% !important;
   }
  }
 
-.h-85 { height: 85%; }
-.h-90 { height: 90%; }
+/*
+
+BOOTSTRAP OVERRIDINGS
+
+*/
+
+ul {
+  list-style: none
+};
 
 .form-group {
+  display: flex;
+  flex-direction: column-reverse;
   margin-bottom: 1rem;
+
+  label {
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    font-weight: 600;
+  }
+  .mat-form-field-underline {
+    opacity: 0.72;
+  }
+  input, select, textarea {
+    opacity: 0.72;
+    &:focus {
+      +label {
+        color: #005CA9;
+      }
+    }
+  }
+}
+.form-control {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom-width: 2px;
+  background-color: transparent;
+  border-radius: 0;
+  &:focus {
+     box-shadow: none;
+     background-color: transparent;
+  }
 }
 
+.card-header {
+  background-color: transparent;
+  border-bottom: 0;
+}
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.card-footer {
+  background-color: transparent;
+  border-top: 0;
+}
+
+.h-85 {
+  height: 85%;
+}
+.h-90 {
+  height: 90%;
+}
 .color-opac-1 {
   opacity: 0.64;
 }
@@ -319,3 +396,5 @@ mat-sidenav {
 .gradient-bg-light {
   background: linear-gradient(130deg, rgba(239,245,246,1) 0%, rgba(255,255,255,1) 100%) !important;
 }
+
+
