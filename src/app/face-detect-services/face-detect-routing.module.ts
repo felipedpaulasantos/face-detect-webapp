@@ -14,7 +14,8 @@ const routes: Routes = [
     component: DetectComponent,
     data: {
       title: 'Detectar',
-      animation: 'Detectar'
+      animation: 'Detectar',
+      breadcrumb: 'Detectar'
     }
   },
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
     component: CompareComponent,
     data: {
       title: 'Comparar',
-      animation: 'Comparar'
+      animation: 'Comparar',
+      breadcrumb: 'Comparar'
     }
   },
 ];

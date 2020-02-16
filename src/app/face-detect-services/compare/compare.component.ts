@@ -17,7 +17,7 @@ export class CompareComponent implements OnInit {
   ) { }
 
   innerHeight: number;
-  heightProportion = 0.85;
+  heightProportion = 0.80;
   private resultSource = new BehaviorSubject<CompareResult>(null);
   result$ = this.resultSource.asObservable();
 

@@ -14,7 +14,8 @@ const routes: Routes = [
     component: HomeComponent,
     data: {
       title: 'Home',
-      animation: 'Home'
+      animation: 'Home',
+      breadcrumb: 'Home'
     }
   },
   {

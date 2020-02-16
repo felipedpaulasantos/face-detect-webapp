@@ -6,11 +6,13 @@ import { RouterModule } from '@angular/router';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SharedModule } from '../shared/shared.module';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
     SidenavComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [
     ToolbarComponent,
-    SidenavComponent
+    SidenavComponent,
+    BreadcrumbComponent
   ]
 })
 export class MenuModule { }

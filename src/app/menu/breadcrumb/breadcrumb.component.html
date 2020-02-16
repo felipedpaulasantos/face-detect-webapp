@@ -1,0 +1,17 @@
+<div style="position: sticky;">
+  <span class="text-sm text-opac-1 mr-3">
+    Você está em:
+  </span>
+  <ul class="breadcrumb mb-3">
+    <li *ngFor="let breadcrumb of breadcrumbs; last as isLast"
+        class="breadcrumb-item">
+      <button mat-button routerLink="{{breadcrumb.url}}">
+        {{ breadcrumb.label }}
+      </button>
+      <span *ngIf="!isLast">
+        <mat-icon class="d-flex h-100 align-items-center">keyboard_arrow_right</mat-icon>
+      </span>
+    </li>
+  </ul>
+
+</div>

@@ -12,10 +12,11 @@
       <app-sidenav></app-sidenav>
     </mat-sidenav>
 
-    <mat-sidenav-content>
-      <div [@routeAnimations]="prepareRoute(outlet)" class="bg-light p-4">
+    <mat-sidenav-content >
+      <section [@routeAnimations]="prepareRoute(outlet)" class="bg-light p-4">
+        <app-breadcrumb></app-breadcrumb>
         <router-outlet #outlet="outlet"></router-outlet>
-      </div>
+      </section>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </main>

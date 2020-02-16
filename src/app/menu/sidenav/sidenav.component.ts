@@ -59,26 +59,29 @@ export class SidenavComponent implements OnInit {
 
   menuItems: MenuItems[] = [
     {
-      displayName: 'Home',
+      displayName: 'Início',
       iconName: 'home',
       route: '/home'
     },
     {
+      displayName: 'Grupos de Pessoas',
+      iconName: 'people',
+      route: '/person-group',
+      disabled: true
+    },
+    {
+      displayName: 'Pessoas',
+      iconName: 'person',
+      route: '/person',
+      disabled: true
+    },
+    {
       displayName: 'Serviços',
-      iconName: 'face',
+      iconName: 'track_changes',
       children: [
         {
           displayName: 'Detectar',
-          children: [
-            {
-              displayName: 'Teste1',
-              route: '/home'
-            },
-            {
-              displayName: 'Teste2',
-              route: '/detectar'
-            }
-          ]
+          route: '/detectar'
         },
         {
           displayName: 'Comparar',

@@ -16,7 +16,7 @@ import { CompareResult } from '../compare/compare-result/compare-result';
 export class DetectComponent implements OnInit {
 
   innerHeight: number;
-  heightProportion = 0.85;
+  heightProportion = 0.80;
   photoSrc$ = new Observable<string>();
   photoElement$ = new Observable<HTMLImageElement>(null);
   photoFile$ = new Observable<File>(null);

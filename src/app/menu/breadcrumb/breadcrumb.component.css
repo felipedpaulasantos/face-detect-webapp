@@ -1,0 +1,21 @@
+.breadcrumb {
+  display: inline-block;
+  list-style: none !important;
+  list-style-type: none;
+  margin: 0;
+  padding: 0 !important;
+}
+.breadcrumb li {
+  display: inline-flex;
+  vertical-align: middle;
+}
+.breadcrumb li+li:before {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+.breadcrumb li a {
+  text-decoration: none;
+}
+ol.breadcrumb li a:hover {
+  text-decoration: underline;
+}
