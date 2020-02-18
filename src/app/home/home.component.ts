@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators, AbstractControl } from '@angular/forms';
+import { CustomSnackBarService } from '../shared/components/custom-snack-bar/custom-snack-bar.service';
+import { SnackBarType } from '../shared/components/custom-snack-bar/snack-bar-type';
 
 interface Pokemon {
   value: string;
@@ -18,10 +20,16 @@ interface PokemonGroup {
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private snackBar: CustomSnackBarService
+  ) { }
 
   ngOnInit() {
   }
+
+  email = new FormControl('', [Validators.required, Validators.email]);
+  nome = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  teste = new FormControl('');
 
   panelOpenState = false;
 
@@ -69,6 +77,27 @@ export class HomeComponent implements OnInit {
     return value;
   }
 
+  showMessage(message: string, type: SnackBarType) {
+    this.snackBar.openSnackBar(message, null, type);
+  }
 
+  isRequired = (abstractControl: AbstractControl): boolean => {
+    if (abstractControl.validator) {
+      const validator = abstractControl.validator({}as AbstractControl);
+      if (validator && validator.required) {
+        return true;
+      }
+    }
+    if (abstractControl['controls']) {
+      for (const controlName in abstractControl['controls']) {
+        if (abstractControl['controls'][controlName]) {
+          if (this.isRequired(abstractControl['controls'][controlName])) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  };
 
 }

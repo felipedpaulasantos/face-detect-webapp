@@ -80,7 +80,7 @@ $face-detect-webapp-theme: map-merge($face-detect-webapp-theme, (foreground: $my
 }
 .mat-secondary-light {
   background-color: mat-color($mat-caixa-secondary, light) !important;
-  color: #47576B !important
+  color: mat-color($mat-caixa-font, main) !important
 }
 .mat-secondary-dark {
   background-color: mat-color($mat-caixa-secondary, dark) !important;
@@ -105,7 +105,7 @@ $face-detect-webapp-theme: map-merge($face-detect-webapp-theme, (foreground: $my
 }
 .mat-success-light {
   background-color: mat-color($mat-caixa-success, light) !important;
-  color: #47576B !important
+  color: mat-color($mat-caixa-font, main) !important
 }
 .mat-success-dark {
   background-color: mat-color($mat-caixa-success, dark) !important;
@@ -130,7 +130,7 @@ $face-detect-webapp-theme: map-merge($face-detect-webapp-theme, (foreground: $my
 }
 .mat-danger-light {
   background-color: mat-color($mat-caixa-danger, light) !important;
-  color: #47576B !important
+  color: mat-color($mat-caixa-font, main) !important
 }
 .mat-danger-dark {
   background-color: mat-color($mat-caixa-danger, dark) !important;
@@ -155,7 +155,7 @@ $face-detect-webapp-theme: map-merge($face-detect-webapp-theme, (foreground: $my
 }
 .mat-info-light {
   background-color: mat-color($mat-caixa-info, light) !important;
-  color: #47576B !important
+  color: mat-color($mat-caixa-font, main) !important
 }
 .mat-info-dark {
   background-color: mat-color($mat-caixa-info, dark) !important;
@@ -176,11 +176,11 @@ $face-detect-webapp-theme: map-merge($face-detect-webapp-theme, (foreground: $my
 
 .mat-warning {
   background-color: mat-color($mat-caixa-warning, standard) !important;
-  color: #47576B !important;
+  color: mat-color($mat-caixa-font, main) !important;
 }
 .mat-warning-light {
   background-color: mat-color($mat-caixa-warning, light) !important;
-  color: #47576B !important
+  color: mat-color($mat-caixa-font, main) !important
 }
 .mat-warning-dark {
   background-color: mat-color($mat-caixa-warning, dark) !important;
@@ -205,7 +205,7 @@ $face-detect-webapp-theme: map-merge($face-detect-webapp-theme, (foreground: $my
 }
 .mat-apoio-light {
   background-color: mat-color($mat-caixa-apoio, light) !important;
-  color: #47576B !important
+  color: mat-color($mat-caixa-font, main) !important
 }
 .mat-apoio-dark {
   background-color: mat-color($mat-caixa-apoio, dark) !important;
@@ -249,12 +249,55 @@ $face-detect-webapp-theme: map-merge($face-detect-webapp-theme, (foreground: $my
   color: mat-color($mat-caixa-aux, dark) !important;
 }
 
+.mat-form-field-label {
+  color: mat-color($mat-caixa-font, main) !important;
+  opacity: 0.72 !important;
+}
+.mat-form-field-ripple,
+.mat-form-field-underline {
+  background-color: mat-color($mat-caixa-font, main) !important;
+}
+
+/* Input focado */
+.mat-focused
+.mat-form-field-ripple,
+.mat-form-field-underline {
+  background-color: mat-color($mat-caixa-azul, standard) !important;
+}
+.mat-focused .mat-form-field-label {
+  color: mat-color($mat-caixa-azul, standard) !important;
+}
+
+/* Input inválido */
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple,
+.mat-form-field.mat-form-field-invalid .mat-form-field-underline {
+  background-color: mat-color($mat-caixa-danger, standard) !important;
+}
+.mat-form-field.mat-form-field-invalid .mat-form-field-suffix {
+  color: mat-color($mat-caixa-danger, standard) !important;
+}
+
+/* Input válido */
+.mat-form-field.ng-valid .mat-form-field-ripple,
+.mat-form-field.ng-valid .mat-form-field-underline {
+  background-color: mat-color($mat-caixa-success, standard) !important;
+}
+.mat-form-field.ng-valid .mat-form-field-suffix {
+  color: mat-color($mat-caixa-success, standard) !important;
+}
+
+.mat-form-field .mat-form-field-suffix .mat-icon-button {
+  font-size: 1.5em !important;
+}
+.mat-form-field .mat-form-field-suffix .mat-icon {
+  cursor: pointer;
+}
 
 
 html, body { height: 100%; }
 
 body {
-  color: #47576B;
+  color: mat-color($mat-caixa-font, main);
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -311,7 +354,7 @@ ul {
 .form-group {
   display: flex;
   flex-direction: column-reverse;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 
   label {
     transition: all 0.3s ease;
@@ -429,5 +472,7 @@ NOVAS CLASSES AUXILIARES
 .gradient-bg-light {
   background: linear-gradient(130deg, rgba(239,245,246,1) 0%, rgba(255,255,255,1) 100%) !important;
 }
-
-
+.form-field-hint {
+  font-weight: 400 !important;
+  text-transform: lowercase;
+}
