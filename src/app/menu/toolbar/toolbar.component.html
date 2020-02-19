@@ -1,4 +1,4 @@
-<mat-toolbar #toolbar color="primary" class="gradient-bg-sky mat-elevation-z4">
+<mat-toolbar #toolbar color="primary" class="gradient-bg-sky mat-elevation-z4 p-fixed">
   <button mat-icon-button (click)="toggleSidenav()">
     <mat-icon>{{ (sidenavService.isOpened() | async) ? 'menu_open' : 'menu' }}</mat-icon>
   </button>

@@ -44,3 +44,12 @@
   src: url("/assets/images/caixa-logo-x.png") !important;
 }
 
+.mat-toolbar {
+  z-index: 0;
+}
+
+@media (min-width: 992px) {
+  .mat-toolbar {
+    z-index: 10;
+  }
+}

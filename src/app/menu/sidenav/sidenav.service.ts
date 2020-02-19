@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { SidenavRole } from './models/sidenav-role';
-
-enum SidenavViewModes {
-  SOBRE = "over",
-  LADO = "side",
-  EMPURRA = "push"
-};
+import { SidenavViewModes } from './models/sidenav-view-modes';
 
 @Injectable({
   providedIn: 'root'

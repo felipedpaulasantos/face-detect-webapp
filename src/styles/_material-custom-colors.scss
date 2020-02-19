@@ -1,5 +1,5 @@
 $mat-caixa-font: (
-  main: #47576B
+  main: #48586C
 );
 
 $mat-caixa-primary: (
@@ -106,7 +106,7 @@ $mat-caixa-azul: (
   standard : #005CA9,
   dark : #004C8C,
   contrast: (
-    light : #47576B,
+    light : #48586C,
     standard : #FFFFFF,
     dark : #FFFFFF
   )
@@ -117,7 +117,7 @@ $mat-caixa-secondary: (
   standard : #F39200,
   dark : #EC7500,
   contrast: (
-    light : #47576B,
+    light : #48586C,
     standard : #FFFFFF,
     dark : #FFFFFF
   )
@@ -128,7 +128,7 @@ $mat-caixa-success: (
   standard : #AFCA0B,
   dark : #A1B911,
   contrast: (
-    light : #47576B,
+    light : #48586C,
     standard : #FFFFFF,
     dark : #FFFFFF
   )
@@ -139,7 +139,7 @@ $mat-caixa-danger: (
   standard : #F9765E,
   dark : #E26650,
   contrast: (
-    light : #47576B,
+    light : #48586C,
     standard : #FFFFFF,
     dark : #FFFFFF
   )
@@ -150,7 +150,7 @@ $mat-caixa-info: (
   standard : #00B5E5,
   dark : #00A2CD,
   contrast: (
-    light : #47576B,
+    light : #48586C,
     standard : #FFFFFF,
     dark : #FFFFFF
   )
@@ -161,7 +161,7 @@ $mat-caixa-warning: (
   standard : #F9B000,
   dark : #F99E00,
   contrast: (
-    light : #47576B,
+    light : #48586C,
     standard : #FFFFFF,
     dark : #FFFFFF
   )
@@ -172,7 +172,7 @@ $mat-caixa-apoio: (
   standard : #54BBAB,
   dark : #40A797,
   contrast: (
-    light : #47576B,
+    light : #48586C,
     standard : #FFFFFF,
     dark : #FFFFFF
   )
@@ -183,8 +183,32 @@ $mat-caixa-aux: (
   standard : #B26F9B,
   dark : #9F4D83,
   contrast: (
-    light : #47576B,
+    light : #48586C,
     standard : #FFFFFF,
     dark : #FFFFFF
   )
 );
+
+$mat-caixa-light: (
+  light: #FFFFFF,
+  standard: #EFF5F6,
+  dark: #D0E0E3,
+  darker: #B3C7CB,
+  contrast: (
+    light: #48586C,
+    standard: #48586C,
+    dark: #48586C,
+    darker: #48586C
+  )
+);
+
+$mat-caixa-dark: (
+  light: #5F758F,
+  standard: #48586C,
+  dark: #48586C,
+  contrast: (
+    light: #ffffff,
+    standard: #ffffff,
+    dark: #ffffff
+  )
+)
