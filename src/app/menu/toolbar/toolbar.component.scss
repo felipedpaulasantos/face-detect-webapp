@@ -33,3 +33,14 @@
 .gradient-toolbar {
   background-image: url('/assets/images/bg_header.png');
 }
+
+.gradient-bg-light span,
+.gradient-bg-light mat-icon {
+  color: #47576b;
+  opacity: 0.72;
+}
+
+.gradient-bg-light img.img-logo {
+  src: url("/assets/images/caixa-logo-x.png") !important;
+}
+

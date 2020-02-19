@@ -2,9 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { version, name } from "../../package.json";
+
 export const environment = {
   production: false,
   apiUrl: "/facedetect/v1",
+
+  appName: name,
+  appVersion: version,
 
   // CONFIGURACOES DO SSO
   SSO_issuer: 'https://login.des.caixa/auth/realms/intranet',

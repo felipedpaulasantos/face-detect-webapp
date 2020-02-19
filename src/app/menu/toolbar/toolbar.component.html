@@ -3,7 +3,7 @@
     <mat-icon>{{ (sidenavService.isOpened() | async) ? 'menu_open' : 'menu' }}</mat-icon>
   </button>
   <span class="navbar-brand d-flex align-items-center mx-3">
-    <img src="assets/images/caixa-logo-x-branco.png" class="img-fluid img-logo rounded mr-2">
+    <img [src]="getImageLogoSrc()" class="img-fluid img-logo rounded mr-2">
   </span>
-  <span>Face Detect</span>
+  <span>{{ appName | uppercase }}</span>
 </mat-toolbar>

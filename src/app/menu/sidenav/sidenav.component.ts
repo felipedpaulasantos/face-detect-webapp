@@ -9,6 +9,7 @@ import { MenuItem } from './models/menu-items';
 import { SidenavViewModes } from './models/sidenav-view-modes';
 import { SidenavRole } from './models/sidenav-role';
 import { NavService } from './menu-list-item/nav.service';
+import { environment } from 'src/environments/environment';
 
 const HANDSET_MAX_WIDTH = '991.98px';
 
@@ -18,6 +19,8 @@ const HANDSET_MAX_WIDTH = '991.98px';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
+
+  appName = environment.appName;
 
   constructor(
     protected sidenavService: SidenavService,

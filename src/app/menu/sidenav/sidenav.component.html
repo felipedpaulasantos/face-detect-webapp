@@ -1,9 +1,9 @@
 <div class="sidenav p-3">
   <div *ngIf="(sidenavService.viewMode | async) == 'over'">
-    <span  class="my-4 navbar-brand d-flex align-items-center mx-3">
+    <span class="mt-1 mb-3 navbar-brand d-flex align-items-center mx-3">
       <img src="assets/images/caixa-logo-x.png" class="img-fluid img-logo rounded mx-auto">
     </span>
-    <h4 class="text-center text-opac-1 text-uppercase">Nome do sistema</h4>
+    <h5 class="text-center text-opac-1 text-uppercase">{{ appName | uppercase }}</h5>
     <hr class="border-primary color-opac-2 my-3">
   </div>
 

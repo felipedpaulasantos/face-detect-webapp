@@ -315,6 +315,13 @@ mat-sidenav {
   max-width: 70% !important;
 }
 
+@include media-breakpoint-up(sm) {
+  mat-sidenav {
+    min-width: 60% !important;
+    max-width: 60% !important;
+  }
+}
+
 @include media-breakpoint-up(md) {
   mat-sidenav {
     min-width: 50% !important;
@@ -325,7 +332,7 @@ mat-sidenav {
 @include media-breakpoint-up(lg) {
   mat-sidenav {
     min-width: auto !important;
-    max-width: 30% !important;
+    max-width: 25% !important;
   }
 }
 
