@@ -44,7 +44,7 @@ export class SidenavComponent implements OnInit {
   }
 
   @ViewChild('sidenav', { static: false }) appDrawer: ElementRef;
-
+  @ViewChild('sidenavInner', { static: true }) sidenavInner: ElementRef;
   viewMode: SidenavViewModes;
 
   isHandset: boolean;
@@ -62,6 +62,14 @@ export class SidenavComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (this.isHandset && event instanceof NavigationEnd) this.sidenavService.close();
     });
+  }
+
+  getImageLogoSrc() {
+    if (!this.sidenavInner.nativeElement.classList.contains('bg-dark')) {
+      return '/assets/images/caixa-logo-x.png';
+    } else {
+      return '/assets/images/caixa-logo-x-branco.png';
+    }
   }
 
   menuItems: MenuItem[] = [

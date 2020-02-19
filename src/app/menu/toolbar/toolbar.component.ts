@@ -27,7 +27,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.toolbar._elementRef.nativeElement.classList);
+
   }
 
   getImageLogoSrc() {

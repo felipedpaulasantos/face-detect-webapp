@@ -311,8 +311,8 @@ mat-form-field { width: 100% !important; }
 .mat-tab-body-wrapper { height: 100%; }
 
 mat-sidenav {
-  min-width: 70% !important;
-  max-width: 70% !important;
+  min-width: 80% !important;
+  max-width: 80% !important;
 }
 
 @include media-breakpoint-up(sm) {
@@ -342,6 +342,13 @@ mat-sidenav {
     max-width: 30% !important;
   }
  }
+
+.sidenav.bg-dark .mat-menu-item,
+.sidenav.bg-dark h6,
+.sidenav.bg-dark .mat-icon {
+  color: mat-color($mat-caixa-font, light);
+  opacity: 1;
+}
 
 /*
 
@@ -478,6 +485,9 @@ NOVAS CLASSES AUXILIARES
 }
 .gradient-bg-light {
   background: linear-gradient(130deg, rgba(239,245,246,1) 0%, rgba(255,255,255,1) 100%) !important;
+}
+.gradient-bg-dark {
+  background: linear-gradient(130deg, rgba(58,72,89,1) 0%, rgba(95,118,143,1) 100%) !important;
 }
 .form-field-hint {
   font-weight: 400 !important;
