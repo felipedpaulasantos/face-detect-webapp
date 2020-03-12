@@ -366,15 +366,6 @@ ul {
 };
 
 .form-group {
-  display: flex;
-  flex-direction: column-reverse;
-  margin-bottom: 2rem;
-
-  label {
-    transition: all 0.3s ease;
-    opacity: 0.8;
-    font-weight: 600;
-  }
   .mat-form-field-underline {
     opacity: 0.72;
   }
@@ -387,6 +378,7 @@ ul {
     }
   }
 }
+
 .form-control {
   border-top: 0;
   border-left: 0;
@@ -399,6 +391,8 @@ ul {
      background-color: transparent;
   }
 }
+
+/* Bootstrap floating label */
 
 .card {
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),

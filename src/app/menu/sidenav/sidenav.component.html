@@ -1,7 +1,10 @@
-<div #sidenavInner class="sidenav p-3">
+<perfect-scrollbar #sidenavInner class="sidenav px-3">
+
+  <br>
+
   <div *ngIf="(sidenavService.viewMode | async) == 'over'">
     <span class="d-flex align-items-center mt-1 mb-3 justify-content-center navbar-brand">
-      <img [src]="getImageLogoSrc()" class="img-fluid img-logo rounded mr-2">
+      <img src="/assets/images/caixa-logo-x.png" class="img-fluid img-logo rounded mr-2">
       <h6 class="text-center text-opac-1 text-uppercase mb-0">{{ appName | uppercase }}</h6>
     </span>
     <hr class="border-secondary-light color-opac-2 my-3">
@@ -36,4 +39,4 @@
     <app-menu-list-item *ngFor="let item of menuItems" [item]="item"></app-menu-list-item>
   </mat-nav-list>
 
-</div>
+</perfect-scrollbar>

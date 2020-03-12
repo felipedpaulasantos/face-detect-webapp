@@ -30,11 +30,7 @@
 
         <div class="form-group">
           <mat-form-field floatLabel="always">
-            <mat-label>Teste
-              <span class="form-field-hint">
-                - {{ isRequired(teste) ? 'obrigatório' : 'opcional' }}
-              </span>
-            </mat-label>
+            <mat-label>Teste</mat-label>
             <input matInput [formControl]="teste" placeholder="email@email.com">
             <mat-icon matSuffix (click)="teste.reset()" *ngIf="teste.dirty">{{ teste.valid ? 'check' : 'close' }}</mat-icon>
             <mat-error *ngIf="email.invalid">Erro!</mat-error>
@@ -45,9 +41,6 @@
           <mat-form-field floatLabel="always">
             <mat-label>
               Email
-              <span class="form-field-hint">
-                - {{ isRequired(email) ? 'obrigatório' : 'opcional' }}
-              </span>
             </mat-label>
             <input matInput [formControl]="email" placeholder="email@email.com">
             <mat-hint>Obrigatório</mat-hint>
@@ -60,9 +53,6 @@
           <mat-form-field floatLabel="always">
             <mat-label>
               Nome
-              <span class="form-field-hint">
-                - {{ isRequired(nome) ? 'obrigatório' : 'opcional' }}
-              </span>
             </mat-label>
             <input matInput [formControl]="nome" placeholder="Exemplo da Silva">
             <mat-hint>Mínimo de 5 caracteres</mat-hint>
@@ -125,10 +115,12 @@
         </div>
       </div>
       <div class="card-body">
+
         <div class="form-group">
-          <input class="form-control">
-          <label>Teste</label>
+          <input name="teste" class="form-control" placeholder="Teste">
+          <label for="teste" class="form-control-placeholder">Teste</label>
         </div>
+
         <div class="form-group">
           <input class="form-control">
           <label>Teste</label>

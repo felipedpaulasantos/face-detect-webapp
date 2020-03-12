@@ -4,6 +4,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
 
@@ -29,6 +35,7 @@ import { NavService } from './menu/sidenav/menu-list-item/nav.service';
     BrowserAnimationsModule,
     OAuthModule.forRoot(),
     MaterialModule,
+    PerfectScrollbarModule,
     HomeModule,
     PhotosModule,
     FaceDetectServicesModule,
@@ -46,6 +53,10 @@ import { NavService } from './menu/sidenav/menu-list-item/nav.service';
     {
       provide: LOCALE_ID,
       useValue: 'pt'
+    },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     }
   ],
   bootstrap: [AppComponent],

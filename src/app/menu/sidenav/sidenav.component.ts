@@ -10,6 +10,7 @@ import { SidenavViewModes } from './models/sidenav-view-modes';
 import { SidenavRole } from './models/sidenav-role';
 import { NavService } from './menu-list-item/nav.service';
 import { environment } from 'src/environments/environment';
+import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar'
 
 const HANDSET_MAX_WIDTH = '991.98px';
 
@@ -44,7 +45,7 @@ export class SidenavComponent implements OnInit {
   }
 
   @ViewChild('sidenav', { static: false }) appDrawer: ElementRef;
-  @ViewChild('sidenavInner', { static: true }) sidenavInner: ElementRef;
+  @ViewChild('sidenavInner', { static: true }) sidenavInner: PerfectScrollbarComponent;
   viewMode: SidenavViewModes;
 
   isHandset: boolean;
@@ -62,14 +63,6 @@ export class SidenavComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (this.isHandset && event instanceof NavigationEnd) this.sidenavService.close();
     });
-  }
-
-  getImageLogoSrc() {
-    if (!this.sidenavInner.nativeElement.classList.contains('bg-dark')) {
-      return '/assets/images/caixa-logo-x.png';
-    } else {
-      return '/assets/images/caixa-logo-x-branco.png';
-    }
   }
 
   menuItems: MenuItem[] = [

@@ -8,6 +8,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SharedModule } from '../shared/shared.module';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { MenuListItemComponent } from './sidenav/menu-list-item/menu-list-item.component';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MenuListItemComponent } from './sidenav/menu-list-item/menu-list-item.c
     CommonModule,
     MaterialModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    PerfectScrollbarModule
   ],
   exports: [
     ToolbarComponent,
